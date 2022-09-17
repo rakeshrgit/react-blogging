@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import ProjectsContext from '../../context/projectsContext';
+
 class CreateNewPost extends Component {
     state = { 
         title: '',
         description: ''
        
      }
-     static contextType = ProjectsContext;
-    //  componentWillMount() {
-    //     const newPost = { ...this.state.newPost };
-    //     this.setState({ newPost });
-        
-    //   }
+     static contextType = ProjectsContext; 
     disabledAddPost() {
         const infodisable = { ...this.state };
         if (infodisable.title === "" || infodisable.description === "") {
@@ -31,6 +27,7 @@ class CreateNewPost extends Component {
         title: this.state.title,
         description: this.state.description,
         //status: 'publish'
+        
     };
         this.context.addNewPost(formData);
        
@@ -41,10 +38,10 @@ class CreateNewPost extends Component {
         return ( 
             <React.Fragment>
                 <section className="mt-4">
-                    <div className="container">
+                    <div className="container text-start">
                         <h4>Create Post</h4>
                         <form onSubmit={ this.handleFormSubmit }>
-                            <div className="form-group">
+                            <div className="form-group mb-3">
                                 <label>Title</label>
                                 <input 
                                     className="form-control" 
@@ -54,7 +51,7 @@ class CreateNewPost extends Component {
                                     onChange={ this.handleInputChange }
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group mb-3">
                                 <label>Content</label>
                                 <textarea 
                                     className="form-control"

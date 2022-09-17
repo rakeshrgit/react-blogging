@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProjectsContext from '../../context/projectsContext';
+import CreateNewPostFn from './../createpost/createNewpostFn';
 class Dashboard extends Component {
     state = {  } 
     static contextType = ProjectsContext; 
@@ -13,7 +14,7 @@ class Dashboard extends Component {
         
         return (
             <div>
-                <div className="container">
+                <div className="container text-start">
                         <table className="table w-100">
                             <tbody>
                             {this.context.posts.map(post=>(
@@ -27,12 +28,10 @@ class Dashboard extends Component {
 
                                 </tr>
                             ))}
-
                             </tbody>
-
                         </table>
-                    
                 </div>
+                {/* <CreateNewPostFn/> */}
             </div>
         );
     }
