@@ -6,6 +6,7 @@ import { ProjectsContext } from './context/projectsContext';
 import CreateNewPost from './component/createpost/createNewpost';
 import Navbar from './common/navbar';
 import NotFound from './component/notfound/notFound';
+import CreateNewPostFn from './component/createpost/createNewpostFn';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Navbar/>
         <Routes>
           <Route exact path='/' element={<Dashboard/>}/> 
-          <Route path='/Create-Post' element={<CreateNewPost/>}/> 
+          <Route path='/Create-Post' element={<CreateNewPostFn/>}/> 
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Router>

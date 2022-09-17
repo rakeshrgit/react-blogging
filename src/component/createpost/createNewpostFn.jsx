@@ -5,11 +5,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ProjectsContext from '../../context/projectsContext';
 const CreateNewPostFn = () => {
-    
+    const currentContext = useContext(ProjectsContext)
+    const navigate = useNavigate();
     const [blogInfo, setBlogInfo] = useState({
-       title: "",
+        creator: "",
+        title: "",
         description: "",
-       
+        tags: "",
+        fileUpload: "",
       });
       function handleInputChange(event) {
         setBlogInfo( {...blogInfo, [ event.target.name ]: event.target.value } );
@@ -17,11 +20,15 @@ const CreateNewPostFn = () => {
         function handleFormSubmit(e) {
             e.preventDefault();
             const formData = {
-                title: useState.title,
-                description: useState.description,
+                creator: blogInfo.creator,
+                title: blogInfo.title,
+                description: blogInfo.description,
+                fileUpload:  blogInfo.fileUpload  
                 //status: 'publish'
                 
             };
+            currentContext.addNewPost(formData);
+            navigate('/')
         }   
 
             function disabledAddPost() {
@@ -38,6 +45,16 @@ const CreateNewPostFn = () => {
             <div className="container text-start">
                 <h4>Create Post</h4>
                 <form onSubmit={ handleFormSubmit }>
+                <div className="form-group mb-3">
+                        <label>Creator</label>
+                        <input 
+                            className="form-control" 
+                            type="text"
+                            name="creator"
+                            placeholder="Creator"
+                            onChange={ handleInputChange }
+                        />
+                    </div>
                     <div className="form-group mb-3">
                         <label>Title</label>
                         <input 
@@ -56,6 +73,16 @@ const CreateNewPostFn = () => {
                             name="description"
                             onChange={handleInputChange }
                         ></textarea>
+                    </div>
+                    <div className="form-group mb-3">
+                        <label>Upload Data</label>
+                        <FileBase
+                            type="file"
+                            multiple={false}
+                            onDone={({ base64 }) =>
+                            setBlogInfo({ ...blogInfo, fileUpload: base64 })
+                            }
+                        />
                     </div>
                     <div className="text-right mb-4">
                     <Button

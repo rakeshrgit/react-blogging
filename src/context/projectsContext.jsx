@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import{
     getPosts,
-    createPost
+    createPost,
+    deletePost
     
 } from "../services/projects";
 
@@ -23,12 +24,13 @@ export class ProjectsContext extends Component {
             if (response.status === 200) {
               const posts = response.data;
               this.setState({ posts: posts });
-              console.log('posts ee',posts);
+              //console.log('posts ee',posts);
             }
            
           });
       }; 
-
+     
+      
 
 
      
@@ -38,10 +40,8 @@ export class ProjectsContext extends Component {
       addNewPost = async item => {
         try {
           await createPost(JSON.stringify(item)).then(response => {
-            console.log("addNewPost: ", response);
+           // console.log("addNewPost: ", response);
             if (response.status) {
-              
-             
               this.getAllPosts();
              
             } else {
@@ -60,6 +60,25 @@ export class ProjectsContext extends Component {
           }
         }
       };  
+
+      onDeletePost = async (id) => {
+        
+        const posts = this.state.posts;
+          
+          try {
+            await deletePost(id).then(response => {
+              console.log('response', response)
+              if (response.status) {
+                let post = posts.filter(item => item.id !== id);
+                this.setState({ posts: post });
+                this.getAllPosts();
+                //console.log('post deleted')
+              } else {
+                //console.log('post not deleted')
+              }
+            });
+          } catch (err) {}
+      }; 
     render() { 
       
         return ( 
@@ -69,6 +88,7 @@ export class ProjectsContext extends Component {
                     ...this.state,
                     getAllPosts: this.getAllPosts,
                     addNewPost:this.addNewPost,
+                    onDeletePost: this.onDeletePost
                 }}
                 
             >
