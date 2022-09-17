@@ -19,7 +19,11 @@ class Dashboard extends Component {
                             {this.context.posts.map(post=>(
                                 <tr key={post._id}>
                                     <td>{post.title}</td>        
-                                    <td>{post.description}</td>
+                                    <td>
+                                    {post.description.length > 20 ?
+                                    `${post.description.substring(0, 20)}...` : post.description
+  }
+                                       </td>
 
                                 </tr>
                             ))}

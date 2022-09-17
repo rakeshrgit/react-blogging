@@ -12,9 +12,18 @@ export function getPosts() {
 
 export function createPost(data) {
     //console.log('data', data)
-    //const authToken = localStorage.getItem( 'token' );
+    const authToken = localStorage.getItem( 'token' );
     //console.log('authToken', authToken)
     const projectsEndpoint = APIBASEURL + "api/blogs";
-    //console.log('projectsEndpoint', projectsEndpoint)
-    
+    console.log('projectsEndpoint', projectsEndpoint)
+    return apiService.post(projectsEndpoint,data,{
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${ authToken }`
+         
+      }
+     
+  });
   }
+
+

@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-
-
 import{
     getPosts,
     createPost
@@ -40,7 +38,7 @@ export class ProjectsContext extends Component {
       addNewPost = async item => {
         try {
           await createPost(JSON.stringify(item)).then(response => {
-           // console.log("addNewPost: ", response);
+            console.log("addNewPost: ", response);
             if (response.status) {
               
              
