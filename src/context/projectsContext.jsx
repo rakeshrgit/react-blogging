@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import{
     getPosts,
     createPost,
@@ -29,13 +31,6 @@ export class ProjectsContext extends Component {
            
           });
       }; 
-     
-      
-
-
-     
-
-      
      
       addNewPost = async item => {
         try {
@@ -72,7 +67,9 @@ export class ProjectsContext extends Component {
                 let post = posts.filter(item => item.id !== id);
                 this.setState({ posts: post });
                 this.getAllPosts();
-                //console.log('post deleted')
+                console.log('run toast')
+                toast.success('post deleted')
+                console.log('run toast')
               } else {
                 //console.log('post not deleted')
               }
@@ -94,7 +91,7 @@ export class ProjectsContext extends Component {
             >
                 
                 {this.props.children}
-
+                <ToastContainer /> 
             </Context.Provider>
          );
     }
