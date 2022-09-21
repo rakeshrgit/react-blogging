@@ -3,12 +3,13 @@ import ProjectsContext from '../../context/projectsContext';
 import CreateNewPostFn from './../createpost/createNewpostFn';
 import EditPost from './../Modal/editModal/editPost';
 import EditPostNew from './../Modal/editModal/editPostNew';
-
+import { NavLink  } from "react-router-dom";
 
 class Dashboard extends Component {
     state = { 
         requiredItem: 0,
         postid: null,
+        singlepostid:null,
         showmodal:false,
      } 
     static contextType = ProjectsContext; 
@@ -22,6 +23,7 @@ class Dashboard extends Component {
         //console.log('id', id)
         await this.setState({ postid: id });  
          this.context.onDeletePost(this.state.postid);  
+         //console.log('postiddelete', this.state.postid)
     }; 
     replaceModalItem = (index) => {
         //console.log('index', index)
@@ -49,6 +51,9 @@ class Dashboard extends Component {
     closeModalDetails =  () => {
         this.setState({showmodal:false})
         //await this.context.onUpdatePost(item);  
+    }
+    handleSinglePosts =  id =>{
+        this.props.navigation(`/single-blog/${id}`)
     }
     render() { 
         const{posts} = this.context;
@@ -87,7 +92,10 @@ class Dashboard extends Component {
                                     >
                                         Edit
                                     </button>
-                                    <button  className="btn btn-danger btn-sm" onClick={() => this.handleDelete(post._id)}>Delete</button></td>
+                                    <button  className="btn btn-danger btn-sm mx-2" onClick={() => this.handleDelete(post._id)}>Delete</button>
+                                    <button className="btn btn-success btn-sm" onClick={() => this.handleSinglePosts(post._id)}>Read More</button>
+                                
+                                </td>
                             </tr>
                         ))}
                         </tbody>

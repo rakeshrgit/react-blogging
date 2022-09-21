@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import{
     getPosts,
+    getsingle,
     createPost,
     deletePost,
     updatePost
@@ -16,6 +17,8 @@ const Context = React.createContext();
 export class ProjectsContext extends Component {
     state = { 
         posts:[],
+        post:[],
+        singlepost:[],
         isloading: false
      };
   
@@ -33,6 +36,19 @@ export class ProjectsContext extends Component {
           });
       }; 
      
+    
+
+      getSinglePost = async (id) => {
+        await getsingle(id).then(response => {
+            if (response.status === 200) {
+              const post = response.data;
+              this.setState({ post: post });
+              //console.log('posts ee',post);
+            }
+           
+          });
+      }; 
+
       addNewPost = async item => {
         try {
           await createPost(JSON.stringify(item)).then(response => {
@@ -68,9 +84,9 @@ export class ProjectsContext extends Component {
                 let post = posts.filter(item => item.id !== id);
                 this.setState({ posts: post });
                 this.getAllPosts();
-                console.log('run toast')
+                //console.log('run toast')
                 toast.success('post deleted')
-                console.log('run toast')
+                //console.log('run toast')
               } else {
                 //console.log('post not deleted')
               }
@@ -110,7 +126,8 @@ export class ProjectsContext extends Component {
                     getAllPosts: this.getAllPosts,
                     addNewPost:this.addNewPost,
                     onDeletePost: this.onDeletePost,
-                    onUpdatePost: this.onUpdatePost
+                    onUpdatePost: this.onUpdatePost,
+                    getSinglePost:this.getSinglePost
                 }}
                 
             >

@@ -10,6 +10,17 @@ export function getPosts() {
 }
 
 
+
+export function getsingle(id) {
+  //console.log('id', id)
+  const projectsEndpoint = APIBASEURL + "api/blogs/" + id;
+  //console.log('projectsEndpoint', projectsEndpoint)
+  return apiService.get(projectsEndpoint);
+
+}
+
+
+
 export function createPost(data) {
     //console.log('data', data)
    const projectsEndpoint = APIBASEURL + "api/blogs";

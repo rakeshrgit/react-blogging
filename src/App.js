@@ -8,6 +8,7 @@ import Navbar from './common/navbar';
 import NotFound from './component/notfound/notFound';
 import CreateNewPostFn from './component/createpost/createNewpostFn';
 import SingleBlog from './pages/singleBlog';
+import DashboardNew from './component/dashboard/dashboardNew';
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
       <Router>
         <Navbar/>
         <Routes>
-          <Route exact path='/' element={<Dashboard/>}/> 
+          {/* <Route exact path='/' element={<Dashboard/>}/>  */}
+          <Route exact path='/' element={<DashboardNew/>}/> 
           <Route path='/create-post' element={<CreateNewPostFn/>}/> 
-          <Route path='/single-blog' element={<SingleBlog/>}/> 
+          <Route path='/single-blog/:id' element={<SingleBlog/>}/> 
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Router>
