@@ -24,6 +24,7 @@ class Dashboard extends Component {
          this.context.onDeletePost(this.state.postid);  
     }; 
     replaceModalItem = (index) => {
+        //console.log('index', index)
         this.setState({
           requiredItem: index
         });
@@ -41,6 +42,7 @@ class Dashboard extends Component {
         this.setState({show:false})
      }
     saveModalDetails =  async item => {
+        //console.log('item333', item)
         this.setState({showmodal:false})
         await this.context.onUpdatePost(item);  
     }
@@ -57,11 +59,20 @@ class Dashboard extends Component {
             <div>
                 <div className="container text-start">
                     <table className="table w-100">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Creator</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
                         <tbody>
                         {posts.map((post, index)=>(
                             <tr key={post._id}>
                                 <td>{post.title}</td>        
-                                <td>{post.description}</td>
+                                <td dangerouslySetInnerHTML={{__html:post.description}}></td>
                                 <td>{post.creator}</td>
                                 <td>
                                         {post.fileUpload ? <img src={post.fileUpload} height="200px" width="200px" alt="Post" />: 'no image'}
@@ -87,16 +98,18 @@ class Dashboard extends Component {
                     close={this.handleModalClose} 
                     title={modalData && modalData.title && modalData.title}
                     description={modalData && modalData.description && modalData.description}
-                    saveModalDetails={this.saveModalDetails}
+                    id={modalData && modalData._id}
                     closeModalDetails={this.closeModalDetails}
+                    saveModalDetails={this.saveModalDetails}
                 /> */}
                 <EditPostNew
                     show={this.state.showmodal}
                     close={this.handleModalClose} 
                     title={modalData && modalData.title && modalData.title}
+                    id={modalData && modalData._id}
                     description={modalData && modalData.description && modalData.description}
-                    saveModalDetails={this.saveModalDetails}
                     closeModalDetails={this.closeModalDetails}
+                    saveModalDetails={this.saveModalDetails}
                 />
             </div>
         );

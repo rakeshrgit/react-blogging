@@ -4,7 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import{
     getPosts,
     createPost,
-    deletePost
+    deletePost,
+    updatePost
     
 } from "../services/projects";
 
@@ -14,8 +15,8 @@ const Context = React.createContext();
 
 export class ProjectsContext extends Component {
     state = { 
-        posts:[]
-        
+        posts:[],
+        isloading: false
      };
   
    
@@ -76,6 +77,29 @@ export class ProjectsContext extends Component {
             });
           } catch (err) {}
       }; 
+
+      onUpdatePost = async (item) => {
+        // console.log('onUpdatePost', id)
+       //  const posts = this.state.posts;
+          //console.log('item', item)
+         // this.setState({isloading: true }); 
+          try {
+             await updatePost(item).then(response => {
+             
+               if (response.status) {
+                 this.setState({isloading: false }); 
+                 this.getAllPosts();
+                 toast.success("Post Updated!");
+               } else {
+                 this.setState({isloading: false }); 
+                 toast.error("Post not Updated!");
+               }
+             });
+           } catch (err) {this.setState({isloading: false }); }
+       };
+
+
+
     render() { 
       
         return ( 
@@ -85,7 +109,8 @@ export class ProjectsContext extends Component {
                     ...this.state,
                     getAllPosts: this.getAllPosts,
                     addNewPost:this.addNewPost,
-                    onDeletePost: this.onDeletePost
+                    onDeletePost: this.onDeletePost,
+                    onUpdatePost: this.onUpdatePost
                 }}
                 
             >

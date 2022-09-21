@@ -7,22 +7,26 @@ const EditPostNew = (props) => {
         title: '',
         description:''
       });
-    //   componentWillReceiveProps(nextProps) {
-    //     useState({
-    //         title: nextProps.title,
-    //         description:nextProps.description,
-           
-    //     });
-    // }
     
+    useEffect( () => {
+        setBlogInfo({ 
+            title: props.title, 
+            description:props.description, 
+            id:props.id
+        });
+    }, [props.title, props.description])
 
-    // useEffect((props) => {
-    //     console.log('Prop Received: ', props);
-    // })
     const titleHandler = (event) => {
-        setBlogInfo( { title: event.target.value, } );
+        
+        setBlogInfo( {...blogInfo, title: event.target.value } );
     }
+
+    const contentHandler = (description) => {
+        
+        setBlogInfo( {...blogInfo, description } );
     
+    }
+
    const handleMClose = () =>{
         props.closeModalDetails()
    } 
@@ -30,10 +34,12 @@ const EditPostNew = (props) => {
    const handleSave = () => {
     const item = blogInfo;
     props.saveModalDetails(item)
-    console.log('item Name', item)
+   // console.log('item Name', item)
 }
 
     return ( 
+        <div>
+        
         <Modal
         show ={props.show}
        
@@ -48,12 +54,12 @@ const EditPostNew = (props) => {
                 <div className="form-data"><span className="modal-lable">Title:</span> <input value={blogInfo.title} onChange={titleHandler}/></div>
                 {/* <div className="form-data"><span className="modal-lable">Content:</span><textarea   value={this.state.content} onChange={(e) => this.contentHandler(e)}></textarea></div> */}
             </div>
-            {/* <div>
+            <div>
                 <JoditEditor 
-                    value={this.state.description}
-                    onBlur={(description) => this.contentHandler(description)}
+                    value={blogInfo.description}
+                    onBlur={(description) => contentHandler(description)}
                 />
-            </div> */}
+            </div>
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={handleMClose}>
@@ -64,6 +70,7 @@ const EditPostNew = (props) => {
             </Button>
             </Modal.Footer>    
     </Modal>
+    </div>
      );
 }
  

@@ -3,16 +3,17 @@ import {Modal, Button, } from "react-bootstrap";
 import JoditEditor from "jodit-react";
 class EditPost extends Component {
     state = { 
-        title: '',
-        description:''
+        // id:'',
+        // title: '',
+        // description:''
      } 
      componentWillReceiveProps(nextProps) {
         this.setState({
             title: nextProps.title,
             description:nextProps.description,
-           
+            id:nextProps.id
         });
-        console.log('nextProps', nextProps)
+        //console.log('nextProps', nextProps)
     }
     titleHandler(e) {
         this.setState({ title: e.target.value,  });

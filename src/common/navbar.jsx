@@ -9,7 +9,7 @@ class Navbar extends Component {
                     <div className="menu-nav">   
                         <ul className="d-flex list-unstyled mb-0"> 
                             <li className="me-2"><NavLink to="/">Home</NavLink></li>
-                            <li className="me-2"><NavLink to="/Create-Post">Create Post</NavLink></li>
+                            <li className="me-2"><NavLink to="/create-post">Create Post</NavLink></li>
                         </ul>
                     </div>
                 </div>

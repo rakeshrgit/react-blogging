@@ -12,15 +12,11 @@ export function getPosts() {
 
 export function createPost(data) {
     //console.log('data', data)
-    const authToken = localStorage.getItem( 'token' );
-    //console.log('authToken', authToken)
-    const projectsEndpoint = APIBASEURL + "api/blogs";
+   const projectsEndpoint = APIBASEURL + "api/blogs";
     //console.log('projectsEndpoint', projectsEndpoint)
     return apiService.post(projectsEndpoint,data,{
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${ authToken }`
-         
       }
      
   });
@@ -28,17 +24,23 @@ export function createPost(data) {
 
 
   export function deletePost(id) {
-    const authToken = localStorage.getItem( 'token' );
     const projectsEndpoint = APIBASEURL + "api/blogs/" + id;
    // console.log('projectsEndpoint', projectsEndpoint)
     return apiService.delete(projectsEndpoint,id,{
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${ authToken }`
-         
-      }
+    }
      
   });
   }
 
 
+  export function updatePost(item) {
+   const projectsEndpoint = APIBASEURL + "api/blogs/" + item.id;
+   return apiService.patch(projectsEndpoint,item,{
+     headers: {
+         'Content-Type': 'application/json',
+    }
+    
+ });
+ }

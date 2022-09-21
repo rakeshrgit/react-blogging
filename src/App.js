@@ -7,6 +7,7 @@ import CreateNewPost from './component/createpost/createNewpost';
 import Navbar from './common/navbar';
 import NotFound from './component/notfound/notFound';
 import CreateNewPostFn from './component/createpost/createNewpostFn';
+import SingleBlog from './pages/singleBlog';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Navbar/>
         <Routes>
           <Route exact path='/' element={<Dashboard/>}/> 
-          <Route path='/Create-Post' element={<CreateNewPostFn/>}/> 
+          <Route path='/create-post' element={<CreateNewPostFn/>}/> 
+          <Route path='/single-blog' element={<SingleBlog/>}/> 
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Router>
