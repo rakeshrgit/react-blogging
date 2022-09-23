@@ -1,25 +1,42 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Button, Form, Container, Alert } from 'react-bootstrap';
 import GoogleButton from 'react-google-button'
 import { NavLink, useNavigate  } from "react-router-dom";
 import {useUserAuth} from "../../context/UserAuthContext"
 const Login = () => {
+    const { user } = useUserAuth();
+    useEffect(() => {
+        if (user) {
+          navigate("/");
+        }
+      });
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const { logIn } = useUserAuth();
+    const { logIn, googleSignIn  } = useUserAuth();
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError("");
         try{
             await logIn(email, password)
-            navigate("/comment");
+            navigate("/");
 
         }catch(err){
             setError(err.message)
         }
     }
+
+    const handleGoogleSignIn = async (e) => {
+        e.preventDefault();
+        try {
+          await googleSignIn();
+          navigate("/");
+        } catch (error) {
+          console.log(error.message);
+        }
+    };
+    
     return ( 
         <Container>
             <h2>Firebase Auth Login</h2>
@@ -50,7 +67,11 @@ const Login = () => {
             </Form>
             <hr/>
             <div>
-                <GoogleButton className="g-button" type="dark"/>
+                <GoogleButton 
+                    className="g-button" 
+                    type="dark"
+                    onClick={handleGoogleSignIn}
+                />
             </div>
             <div className="p-4 box mt-3 text-center">
                 Don't have an account <NavLink to="/signup">Sign Up</NavLink>

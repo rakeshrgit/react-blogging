@@ -13,22 +13,28 @@ import Login from './component/account/login';
 import Signup from './component/account/signup';
 import {UserAuthContextProvider} from "./context/UserAuthContext"
 import CommentBlog from './component/comment/commentBlog';
+import ProtectedRoute from './component/account/ProtectedRoute';
 
 function App() {
   return (
     <div className="App">
         <ProjectsContext>
         <Router>
-          <Navbar/>
+         
           <UserAuthContextProvider>  
+          <Navbar/>
             <Routes>
               {/* <Route exact path='/' element={<Dashboard/>}/>  */}
               <Route exact path='/' element={<DashboardNew/>}/> 
               <Route path='/create-post' element={<CreateNewPostFn/>}/> 
               <Route path='/single-blog/:id' element={<SingleBlog/>}/> 
-              <Route path='/login' element={<Login/>}/> 
+              <Route path='/login' exact element={<Login/>}/> 
               <Route path='/signup' element={<Signup/>}/> 
-              <Route path='/comment' element={<CommentBlog/> }/>
+              <Route path='/comment' element={
+              <ProtectedRoute>
+                <CommentBlog/> 
+              </ProtectedRoute>
+              }/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
           </UserAuthContextProvider>
