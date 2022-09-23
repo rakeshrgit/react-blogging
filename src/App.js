@@ -9,24 +9,32 @@ import NotFound from './component/notfound/notFound';
 import CreateNewPostFn from './component/createpost/createNewpostFn';
 import SingleBlog from './pages/singleBlog';
 import DashboardNew from './component/dashboard/dashboardNew';
+import Login from './component/account/login';
+import Signup from './component/account/signup';
+import {UserAuthContextProvider} from "./context/UserAuthContext"
+import CommentBlog from './component/comment/commentBlog';
 
 function App() {
   return (
     <div className="App">
-      <ProjectsContext>
-      <Router>
-        <Navbar/>
-        <Routes>
-          {/* <Route exact path='/' element={<Dashboard/>}/>  */}
-          <Route exact path='/' element={<DashboardNew/>}/> 
-          <Route path='/create-post' element={<CreateNewPostFn/>}/> 
-          <Route path='/single-blog/:id' element={<SingleBlog/>}/> 
-          <Route path="*" element={<NotFound/>}/>
-        </Routes>
-      </Router>
-
-      
-      </ProjectsContext>  
+        <ProjectsContext>
+        <Router>
+          <Navbar/>
+          <UserAuthContextProvider>  
+            <Routes>
+              {/* <Route exact path='/' element={<Dashboard/>}/>  */}
+              <Route exact path='/' element={<DashboardNew/>}/> 
+              <Route path='/create-post' element={<CreateNewPostFn/>}/> 
+              <Route path='/single-blog/:id' element={<SingleBlog/>}/> 
+              <Route path='/login' element={<Login/>}/> 
+              <Route path='/signup' element={<Signup/>}/> 
+              <Route path='/comment' element={<CommentBlog/> }/>
+              <Route path="*" element={<NotFound/>}/>
+            </Routes>
+          </UserAuthContextProvider>
+        </Router>
+        </ProjectsContext>  
+        
     </div>
   );
 }
