@@ -12,7 +12,6 @@ import DashboardNew from './component/dashboard/dashboardNew';
 import Login from './component/account/login';
 import Signup from './component/account/signup';
 import {UserAuthContextProvider} from "./context/UserAuthContext"
-import CommentBlog from './component/comment/commentBlog';
 import ProtectedRoute from './component/account/ProtectedRoute';
 
 function App() {
@@ -30,11 +29,12 @@ function App() {
               <Route path='/single-blog/:id' element={<SingleBlog/>}/> 
               <Route path='/login' exact element={<Login/>}/> 
               <Route path='/signup' element={<Signup/>}/> 
-              <Route path='/comment' element={
+              {/* <Route path='/comment' element={
               <ProtectedRoute>
-                <CommentBlog/> 
+                <DashboardNew/> 
               </ProtectedRoute>
-              }/>
+              }/> */}
+             
               <Route path="*" element={<NotFound/>}/>
             </Routes>
           </UserAuthContextProvider>

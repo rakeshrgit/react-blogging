@@ -8,13 +8,14 @@ const Navbar = () => {
     const { logOut, user } = useUserAuth();
     const navigate = useNavigate();
     const handleLogout = async () => {
+      
       try {
         await logOut();
         navigate("/");
       } catch (error) {
         console.log(error.message);
       }
-      window.location.href = '/';
+      //window.location.href = '/';
     };
    
     return ( 

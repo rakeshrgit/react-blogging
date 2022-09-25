@@ -5,14 +5,16 @@ import {useUserAuth} from "../../context/UserAuthContext"
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
     const [error, setError] = useState("");
     const { signUp } = useUserAuth();
+    console.log('signUp', signUp)
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError("");
         try{
-            await signUp(email, password)
+            await signUp(email, password, name)
             navigate("/login");
 
         }catch(err){
@@ -24,6 +26,15 @@ const Signup = () => {
             <h2>Firebase Auth Signup</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicName">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control 
+                        type="text" 
+                        placeholder="Enter Name" 
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </Form.Group>
+
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control 
