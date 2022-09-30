@@ -19,18 +19,26 @@ export function getsingle(id) {
 }
 
 export function getcomment(item) {
+  //console.log('gtitem', item)
   const projectsEndpoint = APIBASEURL + "api/blogs/" + item.id + '/commentsCheck4BlogPost';
   //console.log('projectsEndpoint', projectsEndpoint)
    return apiService.patch(projectsEndpoint,item,{
      headers: {
          'Content-Type': 'application/json',
     }
-    
  });
-
 }
 
 
+// export function deletecomment(commnetParentId, id) {
+//   const projectsEndpoint = APIBASEURL + "api/blogs/" + commnetParentId.id + '/commentsCheck4BlogPost/' + id;
+//   console.log('projectsEndpoint', projectsEndpoint)
+//    return apiService.patch(projectsEndpoint,commnetParentId,{
+//      headers: {
+//          'Content-Type': 'application/json',
+//     }
+//  });
+// }
 
 export function createPost(data) {
     //console.log('data', data)

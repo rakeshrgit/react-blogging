@@ -51,7 +51,7 @@ const DashboardNew = () => {
     } 
 
     const saveModalDetails =  async item => {
-        //console.log('item333', item)
+       // console.log('item333', item)
         setBlogInfo({showmodal:false})
         await currentContext.onUpdatePost(item);  
     }

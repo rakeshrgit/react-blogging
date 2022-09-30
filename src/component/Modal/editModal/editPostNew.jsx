@@ -17,7 +17,7 @@ const EditPostNew = (props) => {
     }, [props.title, props.description])
 
     const titleHandler = (event) => {
-        
+        //console.log('event', event)
         setBlogInfo( {...blogInfo, [ event.target.name ]: event.target.value } );
     }
 
@@ -55,7 +55,7 @@ const EditPostNew = (props) => {
                 <input 
                     type="text"
                     name="title"
-                    value={blogInfo.title} 
+                    value={blogInfo.title || '' } 
                     onChange={titleHandler}
                 />
             </div>

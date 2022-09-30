@@ -8,6 +8,7 @@ import{
     deletePost,
     updatePost,
     getcomment
+    //deletecomment
     
 } from "../services/projects";
 
@@ -103,9 +104,7 @@ export class ProjectsContext extends Component {
       };  
 
       onDeletePost = async (id) => {
-        
         const posts = this.state.posts;
-          
           try {
             await deletePost(id).then(response => {
               console.log('response', response)
@@ -122,6 +121,21 @@ export class ProjectsContext extends Component {
             });
           } catch (err) {}
       }; 
+
+      // onDeleteComment = async (commnetParentId, id) => {
+      //   //const posts = this.state.posts;
+      //     try {
+      //       await deletecomment(commnetParentId, id).then(response => {
+      //         console.log('response', response)
+      //         if (response.status) {
+                
+      //         } else {
+      //           //console.log('post not deleted')
+      //         }
+      //       });
+      //     } catch (err) {}
+      // };
+
 
       onUpdatePost = async (item) => {
         // console.log('onUpdatePost', id)
@@ -157,7 +171,8 @@ export class ProjectsContext extends Component {
                     onDeletePost: this.onDeletePost,
                     onUpdatePost: this.onUpdatePost,
                     getSinglePost:this.getSinglePost,
-                    getSingleComment:this.getSingleComment
+                    getSingleComment:this.getSingleComment,
+                    //onDeleteComment: this.onDeleteComment,
                 }}
                 
             >

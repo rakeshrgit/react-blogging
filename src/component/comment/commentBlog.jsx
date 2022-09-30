@@ -15,6 +15,8 @@ const CommentBlog = (props) => {
         email: "",
         description: "",
     });
+    
+
     const { id } = useParams();
     
     const handleInputChange = (event) => {
@@ -31,8 +33,12 @@ const CommentBlog = (props) => {
             };
             //console.log('commnetData', commnetData)
             currentContext.getSingleComment(commnetData);
-           
+
+            //for blank input
+            setComment({commnetData:''})
         }   
+        
+        
 
             function disabledAddPost() {
                 const infodisable = { ...comment };
@@ -43,12 +49,20 @@ const CommentBlog = (props) => {
                 }
               }
 
-              useEffect( () => {
-                currentContext.getSingleComment(id)
-            }, [])
             const{post} = currentContext;
             
-            console.log('commentpost', post)      
+            // //console.log('commentpost', post)     
+            // const handleCommentDelete = (id) =>{
+            //     const commnetParentId = {
+            //       id:props.id
+            //     };
+            //     console.log('commnetDeletaData', commnetParentId)    
+
+
+            //     //console.log('item', item);
+            //     currentContext.onDeleteComment(commnetParentId, id); 
+            //     //console.log('id', id);
+            // } 
 
     return ( 
         <Container>
@@ -57,10 +71,11 @@ const CommentBlog = (props) => {
             <div className="container text-start">
                 <div>
                 {post.CommentsCheck4?.map(item => (
-                    <div key={item._id}>
+                    <div className="mb-4" key={item._id}>
                         <div>{item.description}</div>
                         <div>{item.email}</div>
                         <div>{item.name}</div>
+                       
                     </div>    
                 ))}
                 </div>
@@ -74,7 +89,7 @@ const CommentBlog = (props) => {
                             name="name"
                             placeholder="Name"
                             onChange={ handleInputChange }
-                            value ={comment.name}
+                            value ={comment.name || ''}
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -86,7 +101,7 @@ const CommentBlog = (props) => {
                             placeholder="Email"
                             onChange={ handleInputChange }
                             required
-                            value ={comment.email}
+                            value ={comment.email || ''}
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -96,7 +111,7 @@ const CommentBlog = (props) => {
                             placeholder="Project Description"
                             name="description"
                             onChange={handleInputChange }
-                            value ={comment.description}
+                            value ={comment.description || ''}
                         ></textarea>
                     </div>
                     
