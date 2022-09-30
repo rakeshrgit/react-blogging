@@ -6,7 +6,8 @@ import{
     getsingle,
     createPost,
     deletePost,
-    updatePost
+    updatePost,
+    getcomment
     
 } from "../services/projects";
 
@@ -48,6 +49,34 @@ export class ProjectsContext extends Component {
            
           });
       }; 
+
+     
+
+      getSingleComment = async (item) => {
+        // console.log('onUpdatePost', id)
+       //  const posts = this.state.posts;
+          //console.log('item', item)
+         // this.setState({isloading: true }); 
+          try {
+             await getcomment(item).then(response => {
+             
+               if (response.status === 200) {
+                const post = response.data;
+                this.setState({ post: post });
+                 //console.log('posts ee',post);
+                 toast.success("Post Updated!");
+                 
+               } else {
+                 //this.setState({isloading: false }); 
+                 toast.error("Post not Updated!");
+               }
+
+             });
+             
+           } catch (err) {this.setState({isloading: false }); }
+       };
+
+
 
       addNewPost = async item => {
         try {
@@ -127,7 +156,8 @@ export class ProjectsContext extends Component {
                     addNewPost:this.addNewPost,
                     onDeletePost: this.onDeletePost,
                     onUpdatePost: this.onUpdatePost,
-                    getSinglePost:this.getSinglePost
+                    getSinglePost:this.getSinglePost,
+                    getSingleComment:this.getSingleComment
                 }}
                 
             >

@@ -18,7 +18,7 @@ const EditPostNew = (props) => {
 
     const titleHandler = (event) => {
         
-        setBlogInfo( {...blogInfo, title: event.target.value } );
+        setBlogInfo( {...blogInfo, [ event.target.name ]: event.target.value } );
     }
 
     const contentHandler = (description) => {
@@ -51,7 +51,14 @@ const EditPostNew = (props) => {
             </Modal.Header>
             <Modal.Body>
             <div className="form-section">
-                <div className="form-data"><span className="modal-lable">Title:</span> <input value={blogInfo.title} onChange={titleHandler}/></div>
+                <div className="form-data"><span className="modal-lable">Title:</span> 
+                <input 
+                    type="text"
+                    name="title"
+                    value={blogInfo.title} 
+                    onChange={titleHandler}
+                />
+            </div>
                 {/* <div className="form-data"><span className="modal-lable">Content:</span><textarea   value={this.state.content} onChange={(e) => this.contentHandler(e)}></textarea></div> */}
             </div>
             <div>

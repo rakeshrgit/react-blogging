@@ -74,7 +74,7 @@ const DashboardNew = () => {
                             </tr>
                         </thead>
                         <tbody>
-                        {posts.map((post, index)=>(
+                        {posts?.map((post, index)=>(
                             <tr key={post._id}>
                                 <td>{post.title}</td>        
                                 <td dangerouslySetInnerHTML={{__html:post.description}}></td>

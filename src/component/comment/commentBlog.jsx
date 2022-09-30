@@ -1,31 +1,37 @@
-import React,{useState} from "react";
+import React,{useState, useContext, useEffect} from "react";
 import { Button, Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import axios from 'axios';
+import ProjectsContext from '../../context/projectsContext';
 // import { useUserAuth } from "../../context/UserAuthContext";
 
-const CommentBlog = () => {
+const CommentBlog = (props) => {
+    const currentContext = useContext(ProjectsContext)
+    //console.log('props', props)
     const navigate = useNavigate();
     const [comment, setComment] = useState({
         name: "",
         email: "",
         description: "",
     });
-    function handleInputChange(event) {
+    const { id } = useParams();
+    
+    const handleInputChange = (event) => {
         setComment( {...comment, [ event.target.name ]: event.target.value } );
         }
-        function handleFormSubmit(e) {
+        const handleFormSubmit = (e) => {
             e.preventDefault();
-            const formData = {
-                name: comment.creator,
-                email: comment.title,
+            const commnetData = {
+                name: comment.name,
+                email: comment.email,
                 description: comment.description,
-               
+                id:props.id
                 //status: 'publish'
-                
             };
-            //currentContext.addNewPost(formData);
-            axios.patch('http://localhost:4000/api/blogs/632b430b55a29dc9f9913374/commentBlogPost');
+            //console.log('commnetData', commnetData)
+            currentContext.getSingleComment(commnetData);
+           
         }   
 
             function disabledAddPost() {
@@ -37,12 +43,28 @@ const CommentBlog = () => {
                 }
               }
 
+              useEffect( () => {
+                currentContext.getSingleComment(id)
+            }, [])
+            const{post} = currentContext;
+            
+            console.log('commentpost', post)      
+
     return ( 
         <Container>
            <React.Fragment>
         <section className="mt-4">
             <div className="container text-start">
-                <h4>Create Post</h4>
+                <div>
+                {post.CommentsCheck4?.map(item => (
+                    <div key={item._id}>
+                        <div>{item.description}</div>
+                        <div>{item.email}</div>
+                        <div>{item.name}</div>
+                    </div>    
+                ))}
+                </div>
+                <h4>Comment Post</h4>
                 <form onSubmit={ handleFormSubmit }>
                 <div className="form-group mb-3">
                         <label>Name</label>
@@ -52,6 +74,7 @@ const CommentBlog = () => {
                             name="name"
                             placeholder="Name"
                             onChange={ handleInputChange }
+                            value ={comment.name}
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -63,6 +86,7 @@ const CommentBlog = () => {
                             placeholder="Email"
                             onChange={ handleInputChange }
                             required
+                            value ={comment.email}
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -72,6 +96,7 @@ const CommentBlog = () => {
                             placeholder="Project Description"
                             name="description"
                             onChange={handleInputChange }
+                            value ={comment.description}
                         ></textarea>
                     </div>
                     

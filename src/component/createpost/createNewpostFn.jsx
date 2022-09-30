@@ -52,6 +52,7 @@ const CreateNewPostFn = () => {
                             type="text"
                             name="creator"
                             placeholder="Creator"
+                            value={blogInfo.creator}
                             onChange={ handleInputChange }
                         />
                     </div>
@@ -62,6 +63,7 @@ const CreateNewPostFn = () => {
                             type="text"
                             name="title"
                             placeholder="Post Title"
+                            value={blogInfo.title}
                             onChange={ handleInputChange }
                         />
                     </div>
@@ -71,6 +73,7 @@ const CreateNewPostFn = () => {
                             className="form-control"
                             placeholder="Project Description"
                             name="description"
+                            value={blogInfo.description}
                             onChange={handleInputChange }
                         ></textarea>
                     </div>
