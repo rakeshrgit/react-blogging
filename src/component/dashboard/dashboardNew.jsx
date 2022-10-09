@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
+import "./scss/dashboard.css";
 import ProjectsContext from '../../context/projectsContext';
-import CreateNewPostFn from './../createpost/createNewpostFn';
-import EditPost from './../Modal/editModal/editPost';
 import EditPostNew from './../Modal/editModal/editPostNew';
 import { useNavigate } from "react-router-dom";
+
 const DashboardNew = () => {
     const navigate = useNavigate();
     const currentContext = useContext(ProjectsContext)
@@ -61,9 +61,41 @@ const DashboardNew = () => {
     const modalData = posts[requiredItem];
     //console.log('posts', posts)
     return ( 
-        <div>
+        <React.Fragment>
             <div className="container text-start">
-                    <table className="table w-100">
+                <div className="row">
+                    <div className="col-md-9">
+                        <div className="post-main">
+                            {posts?.map((post, index)=>(
+                                <div key={post._id} className="mb-5">
+                                    <div>{post.creator}</div>
+                                    <div>{post.title}</div>
+                                    <div className="sss" dangerouslySetInnerHTML={{__html:post.description}}></div>
+                                    <div>{post.fileUpload ? <img src={post.fileUpload} alt="Post" />: 'no image'}</div>
+                                    <div>
+                                        <button  className="btn btn-primary btn-sm mx-2"
+                                            onClick={()=> {
+                                                handleShow(index); 
+                                                replaceModalItem(index);
+                                                
+                                            }}
+                                        >
+                                            Edit
+                                        </button>
+                                        <button  className="btn btn-danger btn-sm mx-2" onClick={() => handleDelete(post._id)}>Delete</button>
+                                        <button className="btn btn-success btn-sm" onClick={() => handleSinglePosts(post._id)}>Read More</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div> 
+                    </div>
+                    <div className="col-md-3"> 
+                        weewew
+                    </div>                            
+                </div>                                
+
+
+                    {/*<table className="table w-100">
                         <thead>
                             <tr>
                                 <th>Title</th>
@@ -77,39 +109,39 @@ const DashboardNew = () => {
                         {posts?.map((post, index)=>(
                             <tr key={post._id}>
                                 <td>{post.title}</td>        
-                                <td dangerouslySetInnerHTML={{__html:post.description}}></td>
+                                <td className="sss" dangerouslySetInnerHTML={{__html:post.description}}></td>
                                 <td>{post.creator}</td>
                                 <td>
                                         {post.fileUpload ? <img src={post.fileUpload} height="200px" width="200px" alt="Post" />: 'no image'}
                                 </td>
                                 <td>
                                 <button  className="btn btn-primary btn-sm mx-2"
-                                        onClick={()=> {
-                                            handleShow(index); 
-                                            replaceModalItem(index);
-                                            
-                                        }}
-                                    >
-                                        Edit
-                                    </button>
-                                    <button  className="btn btn-danger btn-sm mx-2" onClick={() => handleDelete(post._id)}>Delete</button>
-                                    <button className="btn btn-success btn-sm" onClick={() => handleSinglePosts(post._id)}>Read More</button>
+                                    onClick={()=> {
+                                        handleShow(index); 
+                                        replaceModalItem(index);
+                                        
+                                    }}
+                                >
+                                    Edit
+                                </button>
+                                <button  className="btn btn-danger btn-sm mx-2" onClick={() => handleDelete(post._id)}>Delete</button>
+                                <button className="btn btn-success btn-sm" onClick={() => handleSinglePosts(post._id)}>Read More</button>
                                 </td>
                             </tr>
                         ))}
                         </tbody>
-                    </table>
-                </div>
-                <EditPostNew
-                    show={blogInfo.showmodal}
-                    close={handleModalClose} 
-                    title={modalData && modalData.title && modalData.title}
-                    id={modalData && modalData._id}
-                    description={modalData && modalData.description && modalData.description}
-                    closeModalDetails={closeModalDetails}
-                    saveModalDetails={saveModalDetails}   
-                />
-        </div>
+                    </table>*/}
+            </div>
+            <EditPostNew
+                show={blogInfo.showmodal}
+                close={handleModalClose} 
+                title={modalData && modalData.title && modalData.title}
+                id={modalData && modalData._id}
+                description={modalData && modalData.description && modalData.description}
+                closeModalDetails={closeModalDetails}
+                saveModalDetails={saveModalDetails}   
+            />
+        </React.Fragment>
      );
 }
  

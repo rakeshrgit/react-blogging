@@ -1,0 +1,65 @@
+@import "./variables";
+@import "./mixins";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+html{
+    font-size:14px;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    background:$theme-bg;
+}
+.header-main{
+    position: sticky;
+    width:100%;
+    top:0;
+    z-index:99;
+    .navbar{
+        background:$navbar-bg;
+        box-shadow: 0 5px 4px -4px rgba(190, 190, 190, .1);
+        -webkit-box-shadow: 0 5px 4px -4px rgba(190, 190, 190, .1);
+       padding:14px 0px;
+       .menu-nav{
+        ul{
+            li{
+                margin:0px 20px 0px 0px;
+                a{
+                    text-decoration:none;
+                    color:$nav-text;
+                    font-size:11px;
+                    text-transform:uppercase;
+                    letter-spacing:1px;
+                    &.active{
+                        color:$link-active-text;
+                    }
+                }
+            }
+        }
+       }
+    }
+}
+.v-logo{
+    padding:42px 0px;
+}
+@media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }

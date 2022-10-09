@@ -13,6 +13,7 @@ import Login from './component/account/login';
 import Signup from './component/account/signup';
 import {UserAuthContextProvider} from "./context/UserAuthContext"
 import ProtectedRoute from './component/account/ProtectedRoute';
+import About from './pages/about';
 
 function App() {
   return (
@@ -25,9 +26,10 @@ function App() {
             <Routes>
               {/* <Route exact path='/' element={<Dashboard/>}/>  */}
               <Route exact path='/' element={<DashboardNew/>}/> 
+              <Route path='/about'  element={<About/>}/> 
               <Route path='/create-post' element={<CreateNewPostFn/>}/> 
               <Route path='/single-blog/:id' element={<SingleBlog/>}/> 
-              <Route path='/login' exact element={<Login/>}/> 
+              <Route path='/login'  element={<Login/>}/> 
               <Route path='/signup' element={<Signup/>}/> 
               {/* <Route path='/comment' element={
               <ProtectedRoute>
