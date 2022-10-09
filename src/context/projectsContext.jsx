@@ -21,7 +21,9 @@ export class ProjectsContext extends Component {
         posts:[],
         post:[],
         singlepost:[],
-        isloading: false
+        isloading: false,
+        pageSize: 4, // for pagination
+        currentPage:1
      };
   
    
@@ -38,7 +40,10 @@ export class ProjectsContext extends Component {
           });
       }; 
      
-    
+      handlePageChange = page => {
+        this.setState({ currentPage: page });  
+        //console.log('page', page) 
+      }; 
 
       getSinglePost = async (id) => {
         await getsingle(id).then(response => {
@@ -172,6 +177,7 @@ export class ProjectsContext extends Component {
                     onUpdatePost: this.onUpdatePost,
                     getSinglePost:this.getSinglePost,
                     getSingleComment:this.getSingleComment,
+                    handlePageChange: this.handlePageChange
                     //onDeleteComment: this.onDeleteComment,
                 }}
                 

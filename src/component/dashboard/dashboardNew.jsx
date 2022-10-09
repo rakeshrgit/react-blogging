@@ -4,6 +4,8 @@ import ProjectsContext from '../../context/projectsContext';
 import EditPostNew from './../Modal/editModal/editPostNew';
 import { useNavigate } from "react-router-dom";
 import Loader from "../../images/loader.gif";
+import Pagination from './../../common/pagination';
+import {paginate} from '../../utils/paginate';
 const DashboardNew = () => {
     const navigate = useNavigate();
     const currentContext = useContext(ProjectsContext)
@@ -55,20 +57,31 @@ const DashboardNew = () => {
         setBlogInfo({showmodal:false})
         await currentContext.onUpdatePost(item);  
     }
-
-    const{posts} = currentContext;
+    const handlePageChange = page => {
+        //console.log('page', page)
+        currentContext.handlePageChange(page);   
+       //this.setState({currentPage:page});
+       
+    };
+    //const{posts} = currentContext;
+    const{length:count} = currentContext.posts;
+    const {  pageSize, currentPage, posts:allPosts} = currentContext;
+    const posts = paginate(allPosts, currentPage, pageSize)
     const requiredItem = blogInfo.requiredItem;
     const modalData = posts[requiredItem];
-    console.log('posts', posts)
-    if(posts.length > 0){
+    //console.log('count', count)
+    //console.log('pageSize', pageSize)
+    //console.log('currentPage', currentPage)
+    if(count > 0){
         return ( 
             <React.Fragment>
                 <div className="container text-start">
                     <div className="row">
                         <div className="col-md-9">
+                            <div className="mb-4">{count} Posts Available</div>
                             <div className="post-main">
                                 {posts?.map((post, index)=>(
-                                    <div key={post._id} className="mb-5 bg-post">
+                                    <div key={post._id} className="mb-4 bg-post">
                                         <div className="text-center">{post.fileUpload ? <img src={post.fileUpload} alt="Post" />: 'no image'}</div>
                                         <div className="bg-post-inner">
                                             <div className="post-creater">{post.creator}</div>
@@ -96,6 +109,12 @@ const DashboardNew = () => {
                                     </div>
                                 ))}
                             </div> 
+                            <Pagination
+                                itemsCount={count}
+                                pageSize={pageSize}
+                                currentPage={currentPage}
+                                onPageChange={handlePageChange} 
+                            />
                         </div>
                         <div className="col-md-3"> 
                             weewew
@@ -149,6 +168,7 @@ const DashboardNew = () => {
                     closeModalDetails={closeModalDetails}
                     saveModalDetails={saveModalDetails}   
                 />
+                
             </React.Fragment>
          );
     }else{
