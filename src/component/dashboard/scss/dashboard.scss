@@ -1,0 +1,50 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+.bg-post{
+    background:$bg-white;
+    .bg-post-inner{
+        padding:30px 30px 30px 30px;
+    }
+    .icon-feature{
+        .btn{
+            background:$btn-text;
+            border-color:$btn-text;
+            color:$text-white;
+            &:focus{
+                background:$btn-text;
+                color:$text-white;
+                border-color:$btn-text;
+            }
+        }
+    }
+    .post-creater{
+        margin:0px 0px 12px 0px;
+        font-weight:600;
+        text-transform:uppercase;
+        text-align:center;
+        color:$btn-text;
+    }
+    .post-title{
+        margin:0px 0px 12px 0px;
+        font-weight:400;
+        text-transform:uppercase;
+        text-align:center;
+        color:$heading-text;
+        font-family: 'Oswald', sans-serif;
+        font-size:1.6rem;
+        letter-spacing:1px;
+    }
+    .icon-feature{
+        margin-top:10px;
+    }
+    .t-trc{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .date{
+        color:$btn-text;
+    }
+}
