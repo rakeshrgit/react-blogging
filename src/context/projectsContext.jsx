@@ -44,6 +44,7 @@ export class ProjectsContext extends Component {
         this.setState({ currentPage: page });  
         //console.log('page', page) 
       }; 
+      
 
       getSinglePost = async (id) => {
         await getsingle(id).then(response => {

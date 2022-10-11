@@ -1,5 +1,10 @@
 @import "../../../assets/scss/variables";
 @import "../../../assets/scss/mixins";
+.av-post{
+    font-size:1.5rem;
+    font-weight:600;
+    color:$btn-text;
+}
 .bg-post{
     background:$bg-white;
     .bg-post-inner{
@@ -10,6 +15,9 @@
             background:$btn-text;
             border-color:$btn-text;
             color:$text-white;
+            padding:8px 12px;
+            border-radius:0;
+            margin-right:3px;
             &:focus{
                 background:$btn-text;
                 color:$text-white;
@@ -43,8 +51,67 @@
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+        height:65px;
     }
     .date{
         color:$btn-text;
     }
+    
 }
+.r-post-main{
+    h5{
+        position: relative;
+        font-family: 'Oswald', sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color:$heading-text;
+        margin-bottom:15px;
+        &::before{
+            content:"";
+            position:absolute;
+            left:0;
+            top:0;
+            height:1px;
+            width:100%;
+            background:#dbdbdb;
+        }
+        span{
+            display:inline-block;
+            background:$body-bg;
+            position:relative;
+            top:-8px;
+            z-index:5;
+            padding:0px 16px;
+        }
+    }
+    .s-recent{
+        .r-p-img{
+            width:100%;
+            max-width:90px;
+            margin-right:15px;
+        }
+    }
+    .d-title{
+        h6{
+            font-weight:400;
+            margin:0px 0px 7px 0px;
+        }
+        .r-date{
+            font-size:11px;
+            color:#545454;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

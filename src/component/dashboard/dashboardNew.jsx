@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../images/loader.gif";
 import Pagination from './../../common/pagination';
 import {paginate} from '../../utils/paginate';
+import ReceecentPosts from './../post/recentPosts';
 const DashboardNew = () => {
     const navigate = useNavigate();
     const currentContext = useContext(ProjectsContext)
@@ -78,46 +79,59 @@ const DashboardNew = () => {
                 <div className="container text-start">
                     <div className="row">
                         <div className="col-md-9">
-                            <div className="mb-4">{count} Posts Available</div>
-                            <div className="post-main">
-                                {posts?.map((post, index)=>(
-                                    <div key={post._id} className="mb-4 bg-post">
-                                        <div className="text-center">{post.fileUpload ? <img src={post.fileUpload} alt="Post" />: 'no image'}</div>
-                                        <div className="bg-post-inner">
-                                            <div className="post-creater">{post.creator}</div>
-                                            <div className="post-title">{post.title}</div>
-                                            <div className="t-trc" dangerouslySetInnerHTML={{__html:post.description}}></div>
-                                            <div className="d-flex w-100 justify-content-between align-items-center mt-4">
-                                                <div className="date">{post.createdAt}</div>
-                                                <div className="text-end icon-feature">
-                                                    <button  className="btn btn-sm mx-2"
-                                                        onClick={()=> {
-                                                            handleShow(index); 
-                                                            replaceModalItem(index);
-                                                            
-                                                        }}
-                                                    >
-                                                        <i className="fa fa-pencil fa-lg"></i>
-                                                    </button>
-                                                    <button  className="btn btn-sm mx-2" onClick={() => handleDelete(post._id)}>
-                                                        <i className="fa fa-trash-o fa-lg"></i>
-                                                    </button>
-                                                    <button className="btn  btn-sm" onClick={() => handleSinglePosts(post._id)}><i className="fa fa-eye fa-lg"></i></button>
-                                                </div>
-                                            </div>    
-                                        </div>                
-                                    </div>
-                                ))}
-                            </div> 
-                            <Pagination
-                                itemsCount={count}
-                                pageSize={pageSize}
-                                currentPage={currentPage}
-                                onPageChange={handlePageChange} 
-                            />
+                            <div className="left-sectoion pe-3">    
+                                <div className="mb-4 av-post text-center">{count} Posts Available</div>
+                                <div className="post-main">
+                                    {posts?.map((post, index)=>(
+                                        <div key={post._id} className="mb-4 bg-post">
+                                            <div className="text-center">{post.fileUpload ? <img src={post.fileUpload} alt="Post" />: 'No Image Available'}</div>
+                                            <div className="bg-post-inner">
+                                                <div className="post-creater">{post.creator}</div>
+                                                <div className="post-title">{post.title}</div>
+                                                <div className="t-trc" dangerouslySetInnerHTML={{__html:post.description}}></div>
+                                                <div className="d-flex w-100 justify-content-between align-items-center mt-4">
+                                                    <div className="date">{post.createdAt}</div>
+                                                    <div className="text-end icon-feature">
+                                                        <button  className="btn btn-sm"
+                                                            onClick={()=> {
+                                                                handleShow(index); 
+                                                                replaceModalItem(index);
+                                                                
+                                                            }}
+                                                        >
+                                                            <i className="fa fa-pencil fa-lg"></i>
+                                                        </button>
+                                                        <button  className="btn btn-sm" onClick={() => handleDelete(post._id)}>
+                                                            <i className="fa fa-trash-o fa-lg"></i>
+                                                        </button>
+                                                        <button className="btn  btn-sm" onClick={() => handleSinglePosts(post._id)}><i className="fa fa-eye fa-lg"></i></button>
+                                                    </div>
+                                                </div>    
+                                            </div>                
+                                        </div>
+                                    ))}
+                                </div> 
+                                <Pagination
+                                    itemsCount={count}
+                                    pageSize={pageSize}
+                                    currentPage={currentPage}
+                                    onPageChange={handlePageChange} 
+                                    
+                                />
+                            </div>
                         </div>
                         <div className="col-md-3"> 
-                            weewew
+                            <div className="r-post-main">                                            
+                                <h5 className="text-center"><span>MUST-READ ARTICLES</span></h5>                            
+                                {posts.slice(0, 3)?.map(item=>(
+                                    <ReceecentPosts 
+                                        key={item._id}
+                                        title={item.title}
+                                        pimg={item.fileUpload}
+                                        dateCreated={item.createdAt}
+                                    />
+                                ))}                                
+                            </div>    
                         </div>                            
                     </div>                                
     
