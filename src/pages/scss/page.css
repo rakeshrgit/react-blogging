@@ -27,4 +27,20 @@
   margin: 0px 0px 24px 66px;
   border-radius: 50%;
 }
+
+.form-post label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.form-post .form-control {
+  border-radius: 0;
+  padding: 10px;
+  height: auto;
+}
+
+.form-post .form-btn .btn {
+  border-radius: 0;
+}
 /*# sourceMappingURL=page.css.map */
