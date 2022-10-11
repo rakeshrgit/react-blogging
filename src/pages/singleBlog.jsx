@@ -6,25 +6,55 @@ import axios from "axios";
 import FileBase from "react-file-base64";
 import CommentBlog from './../component/comment/commentBlog';
 import {useUserAuth} from "../context/UserAuthContext"
+import ReceecentPosts from './../component/post/recentPosts';
 const SingleBlog = () => {
     const {  user } = useUserAuth();
     const currentContext = useContext(ProjectsContext)
     const { id } = useParams();
     useEffect( () => {
-        currentContext.getSinglePost(id)
+        currentContext.getSinglePost(id);
+        currentContext.getAllPosts();
     }, [])
-    const{post} = currentContext;
+    const{post, posts} = currentContext;
     //console.log('post444', post)
     return ( 
-        <div>
-            <div>{post.title}</div>
-            <div dangerouslySetInnerHTML={{__html:post.description}}></div>
-            <div>{post.fileUpload ? <img src={post.fileUpload}  alt="Post" />: 'no image'}</div>
-            <div>{post.creator}</div>
-            <div></div>
-            {user && user.email ?  <CommentBlog id={id}/>:  <li className="me-2">Please Login for any type of comment</li>}
-           
-        </div>
+        <React.Fragment>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-9">
+                        <div className="left-sectoion pe-3">
+                            <div className="page-main">
+                                <div className="page-bg p-0">
+                                    <div className="p-s-img">{post.fileUpload ? <img src={post.fileUpload}  alt="Post" />: 'no image'}</div>
+                                    <div className="bg-post-inner">
+                                        <div className="post-creater">{post.creator}</div>
+                                        <div className="post-title">{post.title}</div>
+                                        <div className="mb-4" dangerouslySetInnerHTML={{__html:post.description}}></div>
+                                        <div>
+                                            {user && user.email ?  <CommentBlog id={id}/>:  <div className="alert alert-primary c-info">Please <NavLink to="/login">Login</NavLink> for any type of comment</div>}
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div className="col-md-3">
+                    <div className="r-post-main">                                            
+                            <h5 className="text-center"><span>MUST-READ ARTICLES</span></h5>                            
+                            {posts.slice(0, 3)?.map(item=>(
+                                <ReceecentPosts 
+                                    key={item._id}
+                                    title={item.title}
+                                    pimg={item.fileUpload}
+                                    dateCreated={item.createdAt}
+                                />
+                            ))}                                
+                        </div>  
+                    </div>    
+
+                </div>
+            </div>
+        </React.Fragment>
      );
 }
  

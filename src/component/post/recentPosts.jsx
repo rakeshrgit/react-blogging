@@ -9,8 +9,8 @@ const ReceecentPosts = (props) => {
                     {props.pimg ? <img src={props.pimg} alt="Post" />: 'No Image Available'}
                 </div>
                 <div className="d-flex flex-column d-title">
-                    <h6>{props.title}</h6>
-                    <div className="r-date">{props.dateCreated}</div>
+                    <h6 className="text-start">{props.title}</h6>
+                    <div className="text-start r-date">{props.dateCreated}</div>
                 </div>    
             </div>
         </React.Fragment>

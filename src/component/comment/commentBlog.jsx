@@ -79,55 +79,56 @@ const CommentBlog = (props) => {
                     </div>    
                 ))}
                 </div>
-                <h4>Comment Post</h4>
-                <form onSubmit={ handleFormSubmit }>
-                <div className="form-group mb-3">
-                        <label>Name</label>
-                        <input 
-                            className="form-control" 
-                            type="text"
-                            name="name"
-                            placeholder="Name"
-                            onChange={ handleInputChange }
-                            value ={comment.name || ''}
-                        />
-                    </div>
-                    <div className="form-group mb-3">
-                        <label>Email</label>
-                        <input 
-                            className="form-control" 
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            onChange={ handleInputChange }
-                            required
-                            value ={comment.email || ''}
-                        />
-                    </div>
-                    <div className="form-group mb-3">
-                        <label>Description</label>
-                        <textarea 
-                            className="form-control"
-                            placeholder="Project Description"
-                            name="description"
-                            onChange={handleInputChange }
-                            value ={comment.description || ''}
-                        ></textarea>
-                    </div>
-                    
-                    <div className="text-right mb-4">
-                    <Button
-                    variant="primary"
-                    size="lg"
-                    type="submit"
-                    //onClick={e => this.addPost(e)}
-                    disabled={disabledAddPost()}
-                    >
-                    Submit
-                    </Button>
-                </div>
-                </form>
-
+                <div className="form-post">
+                    <h1 className="mb-3">Comment Post</h1>
+                    <form onSubmit={ handleFormSubmit }>
+                        <div className="form-group mb-3">
+                            <label>Name</label>
+                            <input 
+                                className="form-control" 
+                                type="text"
+                                name="name"
+                                placeholder="Name"
+                                onChange={ handleInputChange }
+                                value ={comment.name || ''}
+                            />
+                        </div>
+                        <div className="form-group mb-3">
+                            <label>Email</label>
+                            <input 
+                                className="form-control" 
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                onChange={ handleInputChange }
+                                required
+                                value ={comment.email || ''}
+                            />
+                        </div>
+                        <div className="form-group mb-3">
+                            <label>Description</label>
+                            <textarea 
+                                className="form-control"
+                                placeholder="Project Description"
+                                name="description"
+                                onChange={handleInputChange }
+                                value ={comment.description || ''}
+                            ></textarea>
+                        </div>
+                        
+                        <div className="text-end mt-5 form-btn">
+                            <Button
+                            variant="primary"
+                            size="lg"
+                            type="submit"
+                            //onClick={e => this.addPost(e)}
+                            disabled={disabledAddPost()}
+                            >
+                            Submit
+                            </Button>
+                        </div>
+                    </form>
+                </div>        
 
             </div>
         </section>

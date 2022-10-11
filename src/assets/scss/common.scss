@@ -33,6 +33,15 @@ body{
                         color:$link-active-text;
                     }
                 }
+              &.logout{
+                button{
+                  background:$btn-text;
+                  color:$text-white;
+                  -webkit-border-radius:0;
+                  border-radius:0;
+                  border-color:$btn-text;
+                }
+              }  
             }
         }
        }

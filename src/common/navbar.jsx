@@ -24,11 +24,11 @@ const Navbar = () => {
           <div className="navbar">
               <Container>
                   <div className="menu-nav">   
-                      <ul className="d-flex list-unstyled mb-0"> 
+                      <ul className="d-flex align-items-center list-unstyled mb-0"> 
                           <li><NavLink end to="/">Home</NavLink></li>
                           <li><NavLink to="/about">About Us</NavLink></li>
                           <li><NavLink to="/create-post">Create Post</NavLink></li>
-                          {user && user.email ? <Button variant="primary" onClick={handleLogout}>Log out</Button>:  <li><NavLink to="/login" >Login</NavLink></li>}   
+                          {user && user.email ? <li className="logout"><Button variant="primary" onClick={handleLogout}>Log out</Button></li>:  <li><NavLink to="/login" >Login</NavLink></li>}   
                           <li><NavLink to="/signup">Signup</NavLink></li>
                       </ul>
                   </div>

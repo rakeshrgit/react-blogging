@@ -55,6 +55,13 @@ body {
   color: #EF9D87;
 }
 
+.header-main .navbar .menu-nav ul li.logout button {
+  background: #EF9D87;
+  color: #ffffff;
+  border-radius: 0;
+  border-color: #EF9D87;
+}
+
 .v-logo {
   padding: 42px 0px;
 }

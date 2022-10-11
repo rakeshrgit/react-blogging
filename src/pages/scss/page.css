@@ -23,6 +23,29 @@
   margin: 0px 0px 35px 0px;
 }
 
+.page-bg .bg-post-inner {
+  padding: 30px 30px 30px 30px;
+}
+
+.page-bg .bg-post-inner .post-creater {
+  margin: 0px 0px 12px 0px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  color: #EF9D87;
+}
+
+.page-bg .bg-post-inner .post-title {
+  margin: 0px 0px 12px 0px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+
 .about-text img {
   margin: 0px 0px 24px 66px;
   border-radius: 50%;
@@ -42,5 +65,19 @@
 
 .form-post .form-btn .btn {
   border-radius: 0;
+}
+
+.c-info {
+  font-size: 1.3rem;
+}
+
+.c-info a {
+  font-weight: 600;
+  color: #084298;
+  text-decoration: underline;
+}
+
+.c-info a:hover {
+  text-decoration: none;
 }
 /*# sourceMappingURL=page.css.map */
