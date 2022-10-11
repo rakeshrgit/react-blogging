@@ -90,6 +90,44 @@ body {
   color: #ffffff;
 }
 
+.account-form-bg {
+  background: #ffffff;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.account-form-bg h2 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+}
+
+.account-form-bg label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.account-form-bg .form-control {
+  border-radius: 0;
+  padding: 10px;
+  height: auto;
+}
+
+.account-form-bg .form-btn .btn {
+  border-radius: 0;
+}
+
+.account-form-bg .do-info {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.account-form-bg .do-info a {
+  text-decoration: none;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;

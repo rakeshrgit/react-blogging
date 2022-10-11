@@ -39,43 +39,44 @@ const Login = () => {
     
     return ( 
         <Container>
-            <h2>Firebase Auth Login</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control 
-                        type="email" 
-                        placeholder="Enter email" 
-                        type="email" 
-                        placeholder="Enter email" 
-                        onChange={(e) => setEmail(e.target.value)}    
+            <div className="account-form-bg text-start">    
+                <h2 className="mb-4">Login</h2>
+                {error && <Alert variant="danger">{error}</Alert>}
+                <div className="mb-4 mt-4"> 
+                    <GoogleButton 
+                        className="g-button" 
+                        type="dark"
+                        onClick={handleGoogleSignIn}
                     />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                        type="password" 
-                        placeholder="Password" 
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-                
-            </Form>
-            <hr/>
-            <div>
-                <GoogleButton 
-                    className="g-button" 
-                    type="dark"
-                    onClick={handleGoogleSignIn}
-                />
-            </div>
-            <div className="p-4 box mt-3 text-center">
-                Don't have an account <NavLink to="/signup">Sign Up</NavLink>
+                </div>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control 
+                            type="email" 
+                            placeholder="Enter email" 
+                            type="email" 
+                            placeholder="Enter email" 
+                            onChange={(e) => setEmail(e.target.value)}    
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control 
+                            type="password" 
+                            placeholder="Password" 
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Form.Group>
+                    <div className="text-end pt-3 form-btn"> 
+                        <Button variant="primary btn-lg" type="submit">
+                            Submit
+                        </Button>
+                    </div>    
+                </Form>
+                <div className="p-4 box mt-3 text-center do-info">
+                    Don't have an account <NavLink to="/signup">Sign Up</NavLink>
+                </div>
             </div>
         </Container>
      );
