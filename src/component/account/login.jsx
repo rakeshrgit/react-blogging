@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Button, Form, Container, Alert } from 'react-bootstrap';
+import { Button, Form, Container, Alert, Toast  } from 'react-bootstrap';
 import GoogleButton from 'react-google-button'
 import { NavLink, useNavigate  } from "react-router-dom";
 import {useUserAuth} from "../../context/UserAuthContext"
@@ -15,16 +15,20 @@ const Login = () => {
     const [error, setError] = useState("");
     const { logIn, googleSignIn  } = useUserAuth();
     const navigate = useNavigate();
+    const [isLoading, setLoading] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError("");
         try{
+            setLoading(true)
             await logIn(email, password)
             navigate("/");
-
+            
         }catch(err){
+            setLoading(false)
             setError(err.message)
         }
+       
     }
 
     const handleGoogleSignIn = async (e) => {
@@ -41,7 +45,15 @@ const Login = () => {
         <Container>
             <div className="account-form-bg text-start">    
                 <h2 className="mb-4">Login</h2>
-                {error && <Alert variant="danger">{error}</Alert>}
+                {error && 
+                <Toast  className="d-block " bg='warning'>
+                    <Toast.Header closeButton={false}>
+                        <strong className="me-auto">Login</strong>
+                    </Toast.Header>    
+                    <Toast.Body className='warning'>
+                        {error}
+                    </Toast.Body>    
+                </Toast>}
                 <div className="mb-4 mt-4"> 
                     <GoogleButton 
                         className="g-button" 
@@ -53,8 +65,6 @@ const Login = () => {
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control 
-                            type="email" 
-                            placeholder="Enter email" 
                             type="email" 
                             placeholder="Enter email" 
                             onChange={(e) => setEmail(e.target.value)}    
@@ -69,8 +79,11 @@ const Login = () => {
                         />
                     </Form.Group>
                     <div className="text-end pt-3 form-btn"> 
-                        <Button variant="primary btn-lg" type="submit">
-                            Submit
+                        <Button 
+                            variant="primary btn-lg" 
+                            type="submit"
+                            >
+                            {isLoading ? 'Loading…' : 'Submit'}
                         </Button>
                     </div>    
                 </Form>
