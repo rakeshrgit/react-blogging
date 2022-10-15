@@ -2,10 +2,12 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { 
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    sendPasswordResetEmail,
     signOut,
     onAuthStateChanged,
     GoogleAuthProvider,
     signInWithPopup,
+    confirmPasswordReset
  } from "firebase/auth";
  import { auth } from "../firebase";
 
@@ -20,6 +22,17 @@ export function UserAuthContextProvider({children}){
     function logIn(email, password){
         return signInWithEmailAndPassword(auth, email, password);
     }
+
+    function forgotPassword(email){
+      return sendPasswordResetEmail(auth, email, {
+        url: `http://localhost:3000/login`,
+      });
+    }
+    
+    function resetPassword(oobCode, newPassword) {
+      return confirmPasswordReset(auth, oobCode, newPassword)
+    }
+  
 
     function logOut() {
         return signOut(auth);
@@ -42,7 +55,7 @@ export function UserAuthContextProvider({children}){
         };
       }, []);
     return (
-        <userAuthContext.Provider value={{user, signUp, logOut, logIn, googleSignIn}}>
+        <userAuthContext.Provider value={{user, signUp, logOut, logIn, googleSignIn, forgotPassword, resetPassword}}>
             {children}
         </userAuthContext.Provider>   
     )

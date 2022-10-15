@@ -14,6 +14,9 @@ import Signup from './component/account/signup';
 import {UserAuthContextProvider} from "./context/UserAuthContext"
 import ProtectedRoute from './component/account/ProtectedRoute';
 import About from './pages/about';
+import ProfilePage from './pages/profile';
+import ForgotPassword from './pages/forgotPassword';
+import ResetPasswordPage from './pages/resetPassword';
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
               <Route path='/single-blog/:id' element={<SingleBlog/>}/> 
               <Route path='/login'  element={<Login/>}/> 
               <Route path='/signup' element={<Signup/>}/> 
+              <Route path='/profile' element={<ProfilePage/>}/>
+              <Route path='/forgot-password' element={<ForgotPassword/>}/>
+              <Route path='/reset-password' element={<ResetPasswordPage/>}/>
               {/* <Route path='/comment' element={
               <ProtectedRoute>
                 <DashboardNew/> 

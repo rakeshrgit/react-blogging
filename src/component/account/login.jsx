@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Button, Form, Container, Alert, Toast  } from 'react-bootstrap';
 import GoogleButton from 'react-google-button'
-import { NavLink, useNavigate  } from "react-router-dom";
+import { NavLink, useNavigate, Link  } from "react-router-dom";
 import {useUserAuth} from "../../context/UserAuthContext"
 const Login = () => {
     const { user } = useUserAuth();
@@ -30,7 +30,6 @@ const Login = () => {
         }
        
     }
-
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();
         try {
@@ -40,7 +39,6 @@ const Login = () => {
           console.log(error.message);
         }
     };
-    
     return ( 
         <Container>
             <div className="account-form-bg text-start">    
@@ -87,12 +85,12 @@ const Login = () => {
                         </Button>
                     </div>    
                 </Form>
-                <div className="p-4 box mt-3 text-center do-info">
-                    Don't have an account <NavLink to="/signup">Sign Up</NavLink>
+                <div className="pt-4 pb-0 box mt-3 text-center do-info">
+                    <Link to='/forgot-password' className="d-inline-block me-2">Forgot password?</Link>
+                    Don't have an account <br/><NavLink to="/signup">Sign Up</NavLink>
                 </div>
             </div>
         </Container>
      );
 }
- 
 export default Login;
