@@ -11,8 +11,8 @@ import SingleBlog from './pages/singleBlog';
 import DashboardNew from './component/dashboard/dashboardNew';
 import Login from './component/account/login';
 import Signup from './component/account/signup';
-import {UserAuthContextProvider} from "./context/UserAuthContext"
 import ProtectedRoute from './component/account/ProtectedRoute';
+import {UserAuthContextProvider} from "./context/UserAuthContext"
 import About from './pages/about';
 import ProfilePage from './pages/profile';
 import ForgotPassword from './pages/forgotPassword';
@@ -32,17 +32,19 @@ function App() {
               <Route path='/about'  element={<About/>}/> 
               <Route path='/create-post' element={<CreateNewPostFn/>}/> 
               <Route path='/single-blog/:id' element={<SingleBlog/>}/> 
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <ProfilePage />
+                  </ProtectedRoute>
+                }
+              />
+              
               <Route path='/login'  element={<Login/>}/> 
               <Route path='/signup' element={<Signup/>}/> 
-              <Route path='/profile' element={<ProfilePage/>}/>
               <Route path='/forgot-password' element={<ForgotPassword/>}/>
               <Route path='/reset-password' element={<ResetPasswordPage/>}/>
-              {/* <Route path='/comment' element={
-              <ProtectedRoute>
-                <DashboardNew/> 
-              </ProtectedRoute>
-              }/> */}
-             
               <Route path="*" element={<NotFound/>}/>
             </Routes>
           </UserAuthContextProvider>

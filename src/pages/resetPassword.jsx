@@ -2,11 +2,18 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Button, Form, Container, Alert, Toast  } from 'react-bootstrap';
 import {useUserAuth} from "../context/UserAuthContext";
 import { ToastContainer, toast } from 'react-toastify';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 function useQuery() {
     return new URLSearchParams(useLocation().search)
 }
 const ResetPasswordPage = () => {
+    const { user } = useUserAuth();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (user) {
+          navigate("/profile");
+        }
+      });
     const [password, setPassword] = useState("");
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState("");

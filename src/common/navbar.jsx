@@ -11,7 +11,7 @@ const Navbar = () => {
     const handleLogout = async () => {
       try {
         await logOut();
-        navigate("/");
+        navigate("/login");
       } catch (error) {
         console.log(error.message);
       }
@@ -29,7 +29,7 @@ const Navbar = () => {
                           <li><NavLink to="/about">About Us</NavLink></li>
                           <li><NavLink to="/create-post">Create Post</NavLink></li>
                           {user && user.email ? <li className="logout"><Button variant="primary" onClick={handleLogout}>Log out</Button></li>:  <li><NavLink to="/login" >Login</NavLink></li>}   
-                          <li><NavLink to="/signup">Signup</NavLink></li>
+                          {user && user.email ? <li><NavLink to="/profile">View Profile</NavLink></li>:<li><NavLink to="/signup">Signup</NavLink></li>}
                       </ul>
                   </div>
               </Container>

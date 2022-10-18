@@ -1,8 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Button, Form, Container, Alert  , Toast} from 'react-bootstrap';
 import { NavLink, useNavigate  } from "react-router-dom";
 import {useUserAuth} from "../../context/UserAuthContext"
 const Signup = () => {
+    const { user } = useUserAuth();
+    useEffect(() => {
+        if (user) {
+          navigate("/profile");
+        }
+      });
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");

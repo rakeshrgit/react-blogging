@@ -7,7 +7,7 @@ const Login = () => {
     const { user } = useUserAuth();
     useEffect(() => {
         if (user) {
-          navigate("/");
+          navigate("/profile");
         }
       });
     const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ const Login = () => {
         try{
             setLoading(true)
             await logIn(email, password)
-            navigate("/");
+           navigate("/profile");
             
         }catch(err){
             setLoading(false)
@@ -34,7 +34,7 @@ const Login = () => {
         e.preventDefault();
         try {
           await googleSignIn();
-          navigate("/");
+          navigate("/profile");
         } catch (error) {
           console.log(error.message);
         }
