@@ -134,44 +134,6 @@ const DashboardNew = () => {
                             </div>    
                         </div>                            
                     </div>                                
-    
-    
-                        {/*<table className="table w-100">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Creator</th>
-                                    <th>Image</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {posts?.map((post, index)=>(
-                                <tr key={post._id}>
-                                    <td>{post.title}</td>        
-                                    <td className="sss" dangerouslySetInnerHTML={{__html:post.description}}></td>
-                                    <td>{post.creator}</td>
-                                    <td>
-                                            {post.fileUpload ? <img src={post.fileUpload} height="200px" width="200px" alt="Post" />: 'no image'}
-                                    </td>
-                                    <td>
-                                    <button  className="btn btn-primary btn-sm mx-2"
-                                        onClick={()=> {
-                                            handleShow(index); 
-                                            replaceModalItem(index);
-                                            
-                                        }}
-                                    >
-                                        Edit
-                                    </button>
-                                    <button  className="btn btn-danger btn-sm mx-2" onClick={() => handleDelete(post._id)}>Delete</button>
-                                    <button className="btn btn-success btn-sm" onClick={() => handleSinglePosts(post._id)}>Read More</button>
-                                    </td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>*/}
                 </div>
                 <EditPostNew
                     show={blogInfo.showmodal}
