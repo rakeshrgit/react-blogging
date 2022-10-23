@@ -26,7 +26,7 @@ export function UserAuthContextProvider({children}){
 
     function forgotPassword(email){
       return sendPasswordResetEmail(auth, email, {
-        url: `http://localhost:3000/login`,
+        url: `https://react-blogging-fav.netlify.app/login`,
       });
     }
     
