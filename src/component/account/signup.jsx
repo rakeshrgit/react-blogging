@@ -2,16 +2,26 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Button, Form, Container, Alert  , Toast} from 'react-bootstrap';
 import { NavLink, useNavigate  } from "react-router-dom";
 import {useUserAuth} from "../../context/UserAuthContext"
+import { updateProfile } from "firebase/auth";
 const Signup = () => {
     const { user } = useUserAuth();
+    //console.log('user', user)
     useEffect(() => {
         if (user) {
           navigate("/profile");
         }
       });
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
+    
+
+    const [values, setValues] = useState({
+        name: "",
+        email: "",
+        password: "",
+      });  
+
+      function handleInputChange(event) {
+        setValues( {...values, [ event.target.name ]: event.target.value } );
+        }  
     const [error, setError] = useState("");
     const { signUp } = useUserAuth();
     const navigate = useNavigate();
@@ -21,8 +31,9 @@ const Signup = () => {
         setError("");
         try{
             setLoading(true)
-            await signUp(email, password, name)
-            navigate("/login");
+            await signUp(values.email, values.password, values.names)
+           //console.log('signUp', signUp)
+            // navigate("/login");
 
         }catch(err){
             setLoading(false)
@@ -47,9 +58,11 @@ const Signup = () => {
                 <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
                         <Form.Control 
-                            type="text" 
+                            type="text"
+                            name="name"  
                             placeholder="Enter Name" 
-                            onChange={(e) => setName(e.target.value)}
+                            value={values.name}
+                            onChange={ handleInputChange }
                         />
                     </Form.Group>
 
@@ -57,8 +70,10 @@ const Signup = () => {
                         <Form.Label>Email address</Form.Label>
                         <Form.Control 
                             type="email" 
+                            name="email" 
                             placeholder="Enter email" 
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={values.email}
+                            onChange={ handleInputChange }
                         />
                     </Form.Group>
 
@@ -66,8 +81,10 @@ const Signup = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control 
                             type="password" 
+                            name="password" 
                             placeholder="Password" 
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={values.password}
+                            onChange={ handleInputChange }
                         />
                     </Form.Group>
                     <div className="text-end pt-3 form-btn">

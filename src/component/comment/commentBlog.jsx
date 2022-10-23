@@ -8,7 +8,7 @@ import ProjectsContext from '../../context/projectsContext';
 
 const CommentBlog = (props) => {
     const currentContext = useContext(ProjectsContext)
-    console.log('currentContext', currentContext)
+   // console.log('currentContext', currentContext)
     const navigate = useNavigate();
     const [comment, setComment] = useState({
         name: "",

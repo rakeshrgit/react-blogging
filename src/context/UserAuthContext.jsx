@@ -18,12 +18,9 @@ export function UserAuthContextProvider({children}){
     const [user, setUser] = useState("");
     function signUp(email, password, name){
         return createUserWithEmailAndPassword(auth, email, password);
-        
-         
     }
 
-
-    function logIn(email, password){
+   function logIn(email, password){
         return signInWithEmailAndPassword(auth, email, password);
     }
 
@@ -50,12 +47,13 @@ export function UserAuthContextProvider({children}){
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-          console.log("Auth", currentuser);
+          //console.log("Auth", currentuser);
           setUser(currentuser);
         });
     
         return () => {
           unsubscribe();
+         
         };
       }, []);
     return (

@@ -3,7 +3,8 @@ import { Container  } from 'react-bootstrap';
 import {useUserAuth} from "../context/UserAuthContext"
 const ProfilePage = () => {
     const { user } = useUserAuth()
-    console.log('currentUser', user)
+    
+    //console.log('currentUser', user)
     return ( 
         <React.Fragment>
             <Container>

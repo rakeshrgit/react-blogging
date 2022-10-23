@@ -14,14 +14,14 @@ export function getPosts() {
 export function getsingle(id) {
   //console.log('id', id)
   const projectsEndpoint = APIBASEURL + "api/blogs/" + id;
-  console.log('projectsEndpoint', projectsEndpoint)
+  //console.log('projectsEndpoint', projectsEndpoint)
   return apiService.get(projectsEndpoint);
 }
 
 export function getcomment(item) {
   //console.log('gtitem', item)
   const projectsEndpoint = APIBASEURL + "api/blogs/" + item.id + '/commentsCheck4BlogPost';
-  console.log('projectsEndpoint', projectsEndpoint)
+  //console.log('projectsEndpoint', projectsEndpoint)
    return apiService.patch(projectsEndpoint,item,{
      headers: {
          'Content-Type': 'application/json',
