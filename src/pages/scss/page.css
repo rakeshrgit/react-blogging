@@ -80,4 +80,9 @@
 .c-info a:hover {
   text-decoration: none;
 }
+
+.info-text {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
 /*# sourceMappingURL=page.css.map */
