@@ -1,5 +1,5 @@
 var localGlobalConstants = {
-    BASE_URL: "https://blogging-server-12.herokuapp.com/"
+    BASE_URL: "http://localhost:4000/"
   };
   var config = localGlobalConstants;
 

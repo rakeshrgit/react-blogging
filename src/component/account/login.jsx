@@ -26,7 +26,7 @@ const Login = () => {
             
         }catch(err){
             setLoading(false)
-            setError(err.message)
+            setError("Invalid Username and Password")
         }
        
     }
