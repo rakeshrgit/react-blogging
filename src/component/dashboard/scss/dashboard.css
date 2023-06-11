@@ -19,11 +19,9 @@
 .bg-post {
   background: #ffffff;
 }
-
 .bg-post .bg-post-inner {
   padding: 30px 30px 30px 30px;
 }
-
 .bg-post .icon-feature .btn {
   background: #EF9D87;
   border-color: #EF9D87;
@@ -32,13 +30,11 @@
   border-radius: 0;
   margin-right: 3px;
 }
-
 .bg-post .icon-feature .btn:focus {
   background: #EF9D87;
   color: #ffffff;
   border-color: #EF9D87;
 }
-
 .bg-post .post-creater {
   margin: 0px 0px 12px 0px;
   font-weight: 600;
@@ -46,22 +42,19 @@
   text-align: center;
   color: #EF9D87;
 }
-
 .bg-post .post-title {
   margin: 0px 0px 12px 0px;
   font-weight: 400;
   text-transform: uppercase;
   text-align: center;
   color: #000000;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 1.6rem;
   letter-spacing: 1px;
 }
-
 .bg-post .icon-feature {
   margin-top: 10px;
 }
-
 .bg-post .t-trc {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -70,21 +63,19 @@
   -webkit-box-orient: vertical;
   height: 65px;
 }
-
 .bg-post .date {
   color: #EF9D87;
 }
 
 .r-post-main h5 {
   position: relative;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 1px;
   color: #000000;
   margin-bottom: 15px;
 }
-
 .r-post-main h5::before {
   content: "";
   position: absolute;
@@ -94,7 +85,6 @@
   width: 100%;
   background: #dbdbdb;
 }
-
 .r-post-main h5 span {
   display: inline-block;
   background: #f7f7f7;
@@ -103,20 +93,16 @@
   z-index: 5;
   padding: 0px 16px;
 }
-
 .r-post-main .s-recent .r-p-img {
   width: 100%;
   max-width: 90px;
   margin-right: 15px;
 }
-
 .r-post-main .d-title h6 {
   font-weight: 400;
   margin: 0px 0px 7px 0px;
 }
-
 .r-post-main .d-title .r-date {
   font-size: 11px;
   color: #545454;
-}
-/*# sourceMappingURL=dashboard.css.map */
+}/*# sourceMappingURL=dashboard.css.map */

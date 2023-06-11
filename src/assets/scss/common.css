@@ -20,29 +20,25 @@ html {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background: #f7f7f7;
 }
 
 .header-main {
-  position: -webkit-sticky;
   position: sticky;
   width: 100%;
   top: 0;
   z-index: 99;
 }
-
 .header-main .navbar {
   background: #ffffff;
   box-shadow: 0 5px 4px -4px rgba(190, 190, 190, 0.1);
   -webkit-box-shadow: 0 5px 4px -4px rgba(190, 190, 190, 0.1);
   padding: 14px 0px;
 }
-
 .header-main .navbar .menu-nav ul li {
   margin: 0px 20px 0px 0px;
 }
-
 .header-main .navbar .menu-nav ul li a {
   text-decoration: none;
   color: #777777;
@@ -50,11 +46,9 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
 .header-main .navbar .menu-nav ul li a.active {
   color: #EF9D87;
 }
-
 .header-main .navbar .menu-nav ul li.logout button {
   background: #EF9D87;
   color: #ffffff;
@@ -69,23 +63,19 @@ body {
 .post-pagination li {
   border-radius: 0;
 }
-
 .post-pagination li a {
   border-radius: 0 !important;
   font-size: 1.2rem;
   color: #EF9D87;
   cursor: pointer;
 }
-
 .post-pagination li a:hover {
   color: #EF9D87;
 }
-
 .post-pagination li.active .page-link {
   background: #EF9D87;
   border-color: #EF9D87;
 }
-
 .post-pagination li.active .page-link:hover {
   color: #ffffff;
 }
@@ -97,33 +87,27 @@ body {
   max-width: 400px;
   margin: auto;
 }
-
 .account-form-bg h2 {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 400;
 }
-
 .account-form-bg label {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 2px;
 }
-
 .account-form-bg .form-control {
   border-radius: 0;
   padding: 10px;
   height: auto;
 }
-
 .account-form-bg .form-btn .btn {
   border-radius: 0;
 }
-
 .account-form-bg .do-info {
   font-size: 1.1rem;
   font-weight: 600;
 }
-
 .account-form-bg .do-info a {
   text-decoration: none;
 }
@@ -133,22 +117,40 @@ body {
     max-width: 540px;
   }
 }
-
 @media (min-width: 768px) {
   .container {
     max-width: 720px;
   }
 }
-
 @media (min-width: 992px) {
   .container {
     max-width: 960px;
   }
 }
-
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
   }
 }
-/*# sourceMappingURL=common.css.map */
+.create-comment a {
+  background: #EF9D87;
+  color: #ffffff;
+  border-radius: 0;
+  border-color: #EF9D87;
+  font-size: 1.3rem;
+}
+.create-comment a:hover {
+  background: #EF9D87;
+  color: #ffffff;
+  border-color: #EF9D87;
+}
+.create-comment a:focus {
+  background: #EF9D87 !important;
+  color: #ffffff !important;
+  border-color: #EF9D87 !important;
+}
+.create-comment a:active {
+  background: #EF9D87 !important;
+  color: #ffffff !important;
+  border-color: #EF9D87 !important;
+}/*# sourceMappingURL=common.css.map */

@@ -17,6 +17,8 @@ import About from './pages/about';
 import ProfilePage from './pages/profile';
 import ForgotPassword from './pages/forgotPassword';
 import ResetPasswordPage from './pages/resetPassword';
+import CreateComment from './component/comment/createComment';
+import ShowComment from './component/comment/showComment';
 
 function App() {
   return (
@@ -40,7 +42,8 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              
+              <Route path="/create-comment" element={<CreateComment />}/>
+              <Route path="/all-comment" element={<ShowComment />}/>
               <Route path='/login'  element={<Login/>}/> 
               <Route path='/signup' element={<Signup/>}/> 
               <Route path='/forgot-password' element={<ForgotPassword/>}/>

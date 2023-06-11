@@ -128,3 +128,29 @@ body{
       max-width: 1140px;
     }
   }
+  .create-comment {
+    a{
+      background:$btn-text;
+      color:$text-white;
+      -webkit-border-radius:0;
+      border-radius:0;
+      border-color:$btn-text;
+      font-size:1.3rem;
+      &:hover{
+        background:$btn-text;
+        color:$text-white;
+        border-color:$btn-text;
+      }
+      &:focus{
+        background:$btn-text !important;
+        color:$text-white !important;
+        border-color:$btn-text !important;
+      }
+      &:active{
+        background:$btn-text !important;
+        color:$text-white !important;
+        border-color:$btn-text !important;
+      }
+    }
+
+}

@@ -5,7 +5,7 @@ import { NavLink  } from "react-router-dom";
 import axios from "axios";
 import FileBase from "react-file-base64";
 import CommentBlog from './../component/comment/commentBlog';
-import {useUserAuth} from "../context/UserAuthContext"
+import {useUserAuth} from "../context/UserAuthContext";
 import ReceecentPosts from './../component/post/recentPosts';
 const SingleBlog = () => {
     const {  user } = useUserAuth();
