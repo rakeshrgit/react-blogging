@@ -17,7 +17,7 @@ const DashboardNew = () => {
         showmodal:false,
       });
       
-      useEffect( () => {
+    useEffect( () => {
         currentContext.getAllPosts()
     }, [])
     
@@ -68,6 +68,7 @@ const DashboardNew = () => {
     const{length:count} = currentContext.posts;
     const {  pageSize, currentPage, posts:allPosts} = currentContext;
     const posts = paginate(allPosts, currentPage, pageSize)
+   // console.log('posts', posts)
     const requiredItem = blogInfo.requiredItem;
     const modalData = posts[requiredItem];
     //console.log('count', count)
@@ -83,10 +84,10 @@ const DashboardNew = () => {
                                 <div className="mb-4 av-post text-center">{count} Posts Available</div>
                                 <div className="post-main">
                                     {posts?.map((post, index)=>(
-                                        <div key={post._id} className="mb-4 bg-post">
-                                            <div className="text-center">{post.fileUpload ? <img src={post.fileUpload} alt="Post" />: 'No Image Available'}</div>
+                                        <div key={post.id} className="mb-4 bg-post">
+                                            <div className="text-center">{post.avatar ? <img src={post.avatar} alt="Post" />: 'No Image Available'}</div>
                                             <div className="bg-post-inner">
-                                                <div className="post-creater">{post.creator}</div>
+                                                <div className="post-creater">{post.name}</div>
                                                 <div className="post-title">{post.title}</div>
                                                 <div className="t-trc" dangerouslySetInnerHTML={{__html:post.description}}></div>
                                                 <div className="d-flex w-100 justify-content-between align-items-center mt-4">
@@ -101,10 +102,10 @@ const DashboardNew = () => {
                                                         >
                                                             <i className="fa fa-pencil fa-lg"></i>
                                                         </button>
-                                                        <button  className="btn btn-sm" onClick={() => handleDelete(post._id)}>
+                                                        <button  className="btn btn-sm" onClick={() => handleDelete(post.id)}>
                                                             <i className="fa fa-trash-o fa-lg"></i>
                                                         </button>
-                                                        <button className="btn  btn-sm" onClick={() => handleSinglePosts(post._id)}><i className="fa fa-eye fa-lg"></i></button>
+                                                        <button className="btn  btn-sm" onClick={() => handleSinglePosts(post.id)}><i className="fa fa-eye fa-lg"></i></button>
                                                     </div>
                                                 </div>    
                                             </div>                
@@ -125,9 +126,9 @@ const DashboardNew = () => {
                                 <h5 className="text-center"><span>MUST-READ ARTICLES</span></h5>                            
                                 {posts.slice(0, 3)?.map(item=>(
                                     <ReceecentPosts 
-                                        key={item._id}
+                                        key={item.id}
                                         title={item.title}
-                                        pimg={item.fileUpload}
+                                        pimg={item.avatar}
                                         dateCreated={item.createdAt}
                                     />
                                 ))}                                
@@ -139,7 +140,7 @@ const DashboardNew = () => {
                     show={blogInfo.showmodal}
                     close={handleModalClose} 
                     title={modalData && modalData.title && modalData.title}
-                    id={modalData && modalData._id}
+                    id={modalData && modalData.id}
                     description={modalData && modalData.description && modalData.description}
                     closeModalDetails={closeModalDetails}
                     saveModalDetails={saveModalDetails}   

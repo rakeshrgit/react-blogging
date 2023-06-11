@@ -25,9 +25,9 @@ const SingleBlog = () => {
                         <div className="left-sectoion pe-3">
                             <div className="page-main">
                                 <div className="page-bg p-0">
-                                    <div className="p-s-img">{post.fileUpload ? <img src={post.fileUpload}  alt="Post" />: 'no image'}</div>
+                                    <div className="p-s-img">{post.avatar ? <img src={post.avatar}  alt="Post" />: 'no image'}</div>
                                     <div className="bg-post-inner">
-                                        <div className="post-creater">{post.creator}</div>
+                                        <div className="post-creater">{post.name}</div>
                                         <div className="post-title">{post.title}</div>
                                         <div className="mb-4" dangerouslySetInnerHTML={{__html:post.description}}></div>
                                         <div>
@@ -43,9 +43,9 @@ const SingleBlog = () => {
                             <h5 className="text-center"><span>MUST-READ ARTICLES</span></h5>                            
                             {posts.slice(0, 3)?.map(item=>(
                                 <ReceecentPosts 
-                                    key={item._id}
+                                    key={item.id}
                                     title={item.title}
-                                    pimg={item.fileUpload}
+                                    pimg={item.avatar}
                                     dateCreated={item.createdAt}
                                 />
                             ))}                                

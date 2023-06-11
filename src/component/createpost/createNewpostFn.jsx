@@ -14,11 +14,11 @@ const CreateNewPostFn = () => {
     
     const navigate = useNavigate();
     const [blogInfo, setBlogInfo] = useState({
-        creator: "",
+        name: "",
         title: "",
         description: "",
         tags: "",
-        fileUpload: "",
+        avatar: "",
       });
       function handleInputChange(event) {
         setBlogInfo( {...blogInfo, [ event.target.name ]: event.target.value } );
@@ -26,10 +26,10 @@ const CreateNewPostFn = () => {
         function handleFormSubmit(e) {
             e.preventDefault();
             const formData = {
-                creator: blogInfo.creator,
+                name: blogInfo.name,
                 title: blogInfo.title,
                 description: blogInfo.description,
-                fileUpload:  blogInfo.fileUpload  
+                avatar:  blogInfo.avatar  
                 //status: 'publish'
                 
             };
@@ -60,9 +60,9 @@ const CreateNewPostFn = () => {
                                         <input 
                                             className="form-control" 
                                             type="text"
-                                            name="creator"
+                                            name="name"
                                             placeholder="Creator"
-                                            value={blogInfo.creator}
+                                            value={blogInfo.name}
                                             onChange={ handleInputChange }
                                         />
                                     </div>
@@ -94,7 +94,7 @@ const CreateNewPostFn = () => {
                                                 type="file"
                                                 multiple={false}
                                                 onDone={({ base64 }) =>
-                                                setBlogInfo({ ...blogInfo, fileUpload: base64 })
+                                                setBlogInfo({ ...blogInfo, avatar: base64 })
                                                 }
                                             />
                                         </div>
@@ -119,9 +119,9 @@ const CreateNewPostFn = () => {
                             <h5 className="text-center"><span>MUST-READ ARTICLES</span></h5>                            
                             {posts.slice(0, 3)?.map(item=>(
                                 <ReceecentPosts 
-                                    key={item._id}
+                                    key={item.id}
                                     title={item.title}
-                                    pimg={item.fileUpload}
+                                    pimg={item.avatar}
                                     dateCreated={item.createdAt}
                                 />
                             ))}                                

@@ -7,7 +7,8 @@ import{
     createPost,
     deletePost,
     updatePost,
-    getcomment
+    getcomment,
+    getAllComment
     //deletecomment
     
 } from "../services/projects";
@@ -39,7 +40,7 @@ export class ProjectsContext extends Component {
            
           });
       }; 
-     
+      
       handlePageChange = page => {
         this.setState({ currentPage: page });  
         //console.log('page', page) 
@@ -67,15 +68,15 @@ export class ProjectsContext extends Component {
           try {
              await getcomment(item).then(response => {
              
-               if (response.status === 200) {
+               if (response.status === 201) {
                 const post = response.data;
                 this.setState({ post: post });
                  //console.log('posts ee',post);
-                 toast.success("Post Updated!");
+                 toast.success("Comment Updated!");
                  
                } else {
                  //this.setState({isloading: false }); 
-                 toast.error("Post not Updated!");
+                 toast.error("Comment not Updated!");
                }
 
              });
@@ -164,6 +165,17 @@ export class ProjectsContext extends Component {
        };
 
 
+       getAllSinglecomment = async () => {
+        await getAllComment().then(response => {
+            if (response.status === 200) {
+              const comments = response.data;
+              this.setState({ comments: comments });
+              //console.log('posts ee',posts);
+            }
+           
+          });
+      }; 
+
 
     render() { 
       
@@ -178,7 +190,8 @@ export class ProjectsContext extends Component {
                     onUpdatePost: this.onUpdatePost,
                     getSinglePost:this.getSinglePost,
                     getSingleComment:this.getSingleComment,
-                    handlePageChange: this.handlePageChange
+                    handlePageChange: this.handlePageChange,
+                    getAllSinglecomment:this.getAllSinglecomment
                     //onDeleteComment: this.onDeleteComment,
                 }}
                 

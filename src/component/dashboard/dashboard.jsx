@@ -75,7 +75,7 @@ class Dashboard extends Component {
                         </thead>
                         <tbody>
                         {posts.map((post, index)=>(
-                            <tr key={post._id}>
+                            <tr key={post.id}>
                                 <td>{post.title}</td>        
                                 <td dangerouslySetInnerHTML={{__html:post.description}}></td>
                                 <td>{post.creator}</td>

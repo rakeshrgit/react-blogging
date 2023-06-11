@@ -1,11 +1,12 @@
 import apiService from './httpServices'
-import { globalConstants } from "../globalvariables";
+import { globalConstants, globalCommentConstants } from "../globalvariables";
 //import function from './../networkDetector/networkDetector';
 const APIBASEURL = globalConstants.BASE_URL;
+const APIBASEURLCT = globalCommentConstants.BASE_URL;
 
 
 export function getPosts() {
-    const projectsEndpoint = APIBASEURL + "api/blogs";
+    const projectsEndpoint = APIBASEURL + "blogs";
     return apiService.get(projectsEndpoint);
 }
 
@@ -13,22 +14,26 @@ export function getPosts() {
 
 export function getsingle(id) {
   //console.log('id', id)
-  const projectsEndpoint = APIBASEURL + "api/blogs/" + id;
+  const projectsEndpoint = APIBASEURL + "blogs/" + id;
   //console.log('projectsEndpoint', projectsEndpoint)
   return apiService.get(projectsEndpoint);
 }
 
 export function getcomment(item) {
   //console.log('gtitem', item)
-  const projectsEndpoint = APIBASEURL + "api/blogs/" + item.id + '/commentsCheck4BlogPost';
-  //console.log('projectsEndpoint', projectsEndpoint)
-   return apiService.patch(projectsEndpoint,item,{
+  const projectsEndpoint = APIBASEURLCT + "comment/cpost";
+   console.log('projectsEndpoint', projectsEndpoint)
+   return apiService.post(projectsEndpoint,item,{
      headers: {
          'Content-Type': 'application/json',
     }
  });
 }
 
+export function getAllComment() {
+  const projectsEndpoint = APIBASEURLCT + "comment/cpost";
+  return apiService.get(projectsEndpoint);
+}
 
 // export function deletecomment(commnetParentId, id) {
 //   const projectsEndpoint = APIBASEURL + "api/blogs/" + commnetParentId.id + '/commentsCheck4BlogPost/' + id;
@@ -42,7 +47,7 @@ export function getcomment(item) {
 
 export function createPost(data) {
     //console.log('data', data)
-   const projectsEndpoint = APIBASEURL + "api/blogs";
+   const projectsEndpoint = APIBASEURL + "blogs";
     //console.log('projectsEndpoint', projectsEndpoint)
     return apiService.post(projectsEndpoint,data,{
       headers: {
@@ -54,8 +59,8 @@ export function createPost(data) {
 
 
   export function deletePost(id) {
-    const projectsEndpoint = APIBASEURL + "api/blogs/" + id;
-   // console.log('projectsEndpoint', projectsEndpoint)
+    const projectsEndpoint = APIBASEURL + "blogs/" + id;
+   //console.log('projectsEndpoint', projectsEndpoint)
     return apiService.delete(projectsEndpoint,id,{
       headers: {
           'Content-Type': 'application/json',
@@ -66,8 +71,8 @@ export function createPost(data) {
 
 
   export function updatePost(item) {
-   const projectsEndpoint = APIBASEURL + "api/blogs/" + item.id;
-   return apiService.patch(projectsEndpoint,item,{
+   const projectsEndpoint = APIBASEURL + "blogs/" + item.id;
+   return apiService.put(projectsEndpoint,item,{
      headers: {
          'Content-Type': 'application/json',
     }

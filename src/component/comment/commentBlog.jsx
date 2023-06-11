@@ -1,21 +1,25 @@
 import React,{useState, useContext, useEffect} from "react";
 import { Button, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router";
+//import { useNavigate } from "react-router";
 import axios from 'axios';
 import ProjectsContext from '../../context/projectsContext';
 // import { useUserAuth } from "../../context/UserAuthContext";
 
 const CommentBlog = (props) => {
     const currentContext = useContext(ProjectsContext)
+
    // console.log('currentContext', currentContext)
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const [comment, setComment] = useState({
         name: "",
         email: "",
         description: "",
     });
     
+    useEffect( () => {
+        currentContext.getAllSinglecomment()
+    }, [])
 
     const { id } = useParams();
     
@@ -28,7 +32,7 @@ const CommentBlog = (props) => {
                 name: comment.name,
                 email: comment.email,
                 description: comment.description,
-                id:props.id
+                //id:props.id
                 //status: 'publish'
             };
             //console.log('commnetData', commnetData)
@@ -50,8 +54,8 @@ const CommentBlog = (props) => {
               }
 
             const{post} = currentContext;
-            
-            // //console.log('commentpost', post)     
+            const{comments} = currentContext; 
+            //console.log('comments', comments)     
             // const handleCommentDelete = (id) =>{
             //     const commnetParentId = {
             //       id:props.id
@@ -70,11 +74,13 @@ const CommentBlog = (props) => {
         <section className="mt-4">
             <div className="container text-start">
                 <div>
-                {post.CommentsCheck4?.map(item => (
-                    <div className="mb-4" key={item._id}>
-                        <div>{item.description}</div>
-                        <div>{item.email}</div>
-                        <div>{item.name}</div>
+                {comments?.map(mcomment => (
+                    <div className="mb-4" key={mcomment.id}>
+                        <div>{mcomment.name}</div>
+                        <div>{mcomment.email}</div>
+                        <div>{mcomment.description}</div>
+                        
+                        
                        
                     </div>    
                 ))}
