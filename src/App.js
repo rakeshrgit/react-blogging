@@ -19,6 +19,7 @@ import ForgotPassword from './pages/forgotPassword';
 import ResetPasswordPage from './pages/resetPassword';
 import CreateComment from './component/comment/createComment';
 import ShowComment from './component/comment/showComment';
+import Footer from './common/footer';
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
           </UserAuthContextProvider>
         </Router>
         </ProjectsContext>  
-        
+        <Footer/>
     </div>
   );
 }

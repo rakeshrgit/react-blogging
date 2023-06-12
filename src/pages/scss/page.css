@@ -13,6 +13,7 @@
 .page-bg {
   background: #ffffff;
   padding: 35px;
+  min-height: 65vh;
 }
 .page-bg h1 {
   font-family: "Oswald", sans-serif;
