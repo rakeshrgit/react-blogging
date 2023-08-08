@@ -7,6 +7,7 @@ import Loader from "../../images/loader.gif";
 import Pagination from './../../common/pagination';
 import {paginate} from '../../utils/paginate';
 import ReceecentPosts from './../post/recentPosts';
+import moment from 'moment';
 const DashboardNew = () => {
     const navigate = useNavigate();
     const currentContext = useContext(ProjectsContext)
@@ -85,13 +86,20 @@ const DashboardNew = () => {
                                 <div className="post-main">
                                     {posts?.map((post, index)=>(
                                         <div key={post.id} className="mb-4 bg-post">
-                                            <div className="text-center">{post.avatar ? <img src={post.avatar} alt="Post" />: 'No Image Available'}</div>
+                                            <div className="text-center pt-3">{post.avatar ? <img src={post.avatar} alt="Post" />: 'No Image Available'}</div>
                                             <div className="bg-post-inner">
                                                 <div className="post-creater">{post.name}</div>
                                                 <div className="post-title">{post.title}</div>
-                                                <div className="t-trc" dangerouslySetInnerHTML={{__html:post.description}}></div>
+                                                <div className="p-desc">
+                                                    {post.description.length > 250 ?
+                                                        <span dangerouslySetInnerHTML={{ __html: post.description.slice(0, 250) }} className="my-4"></span>
+                                                    :
+                                                        <span dangerouslySetInnerHTML={{ __html: post.description}} className="my-4"></span>
+                                                    }
+                                                    {post.description.length > 250 && '...'}
+                                                </div>    
                                                 <div className="d-flex w-100 justify-content-between align-items-center mt-4">
-                                                    <div className="date">{post.createdAt}</div>
+                                                    <div className="date">{moment(post.createdAt).format('MMMM Do YYYY')} </div>
                                                     <div className="text-end icon-feature">
                                                         <button  className="btn btn-sm"
                                                             onClick={()=> {

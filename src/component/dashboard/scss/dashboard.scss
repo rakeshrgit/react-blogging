@@ -1,5 +1,7 @@
 @import "../../../assets/scss/variables";
 @import "../../../assets/scss/mixins";
+.left-sectoion{min-height:700px;}
+.loading{min-height:60vh;}
 .av-post{
     font-size:1.5rem;
     font-weight:600;
@@ -46,12 +48,7 @@
         margin-top:10px;
     }
     .t-trc{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        height:65px;
+       
     }
     .date{
         color:$btn-text;
@@ -104,7 +101,25 @@
     }
 }
 
-
+.p-desc{
+    span{
+        p{
+            margin:0; display:inline;
+        }
+        h1{
+            margin:0; display:inline;  
+        }
+        h2{
+            margin:0; display:inline;
+        }
+        h3{
+            margin:0; display:inline;
+        }
+        h4{
+            margin:0; display:inline;
+        }
+    }
+}
 
 
 

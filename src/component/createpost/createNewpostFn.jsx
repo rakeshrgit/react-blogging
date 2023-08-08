@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect   } from 'react';
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import FileBase from "react-file-base64";
+import FileBase64 from "react-file-base64";
+import JoditEditor from "jodit-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ProjectsContext from '../../context/projectsContext';
@@ -23,6 +24,11 @@ const CreateNewPostFn = () => {
       function handleInputChange(event) {
         setBlogInfo( {...blogInfo, [ event.target.name ]: event.target.value } );
         }
+      function contentHandler(description) {
+       
+        setBlogInfo( {...blogInfo, description } );
+        //console.log('description', description)
+      }  
         function handleFormSubmit(e) {
             e.preventDefault();
             const formData = {
@@ -51,6 +57,11 @@ const CreateNewPostFn = () => {
             <div className="container text-start">
                 <div className="row">
                     <div className="col-md-9">
+                        <div className="mb-3">
+                            <div className="alert alert-warning" role="alert">
+                                Please upload image below 50 KB
+                            </div>
+                        </div>
                         <div className="left-sectoion pe-3">
                             <div className="page-bg form-post">
                                 <h1 className="text-uppercase">Create Post</h1>
@@ -79,23 +90,24 @@ const CreateNewPostFn = () => {
                                     </div>
                                     <div className="form-group mb-3">
                                         <label>Content</label>
-                                        <textarea 
-                                            className="form-control"
-                                            placeholder="Project Description"
-                                            name="description"
+                                        <JoditEditor 
+                                             
                                             value={blogInfo.description}
-                                            onChange={handleInputChange }
-                                        ></textarea>
+                                            onBlur={(description) => contentHandler(description)}
+                                        />
+                                        
                                     </div>
                                     <div className="form-group mb-3">
                                         <label>Upload Data</label>
                                         <div className="uploadFile">
-                                            <FileBase
+                                            <FileBase64
                                                 type="file"
                                                 multiple={false}
+                                               
                                                 onDone={({ base64 }) =>
                                                 setBlogInfo({ ...blogInfo, avatar: base64 })
                                                 }
+                                                size= {Math.round(blogInfo.avatar.size / 1000) + ' kB'}
                                             />
                                         </div>
                                     </div>
